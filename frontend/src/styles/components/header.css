@@ -1,0 +1,63 @@
+header#main-header{
+    background: #CCF2FF;
+    }
+
+user{
+    float: right;
+    padding-top: 20px;
+    padding-right: 100px;
+    }
+
+.user-button{
+    float: center;
+    width: 150px;
+    height: 60px;
+    border: 0px #CCF2FF;
+    cursor: pointer;
+    background: #CCF2FF;
+    color: rgb(10, 41, 82);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font: 600 18px Nunito, sans-serif;
+    transition: background-color 0.2s;
+    }
+
+icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+aside{
+    float: left;
+    padding-left: 40px;
+    padding-right: 20px;
+    padding-bottom: 250px;
+    background: #CCF2FF;
+    border-right: 1px solid rgb(199, 195, 195);
+    }
+
+.menu-button{
+    float: center;
+    width: 250px;
+    height: 60px;
+    border: 1px solid rgb(199, 195, 195);
+    cursor: pointer;
+    background: #CCF2FF;
+    color: rgb(10, 41, 82);
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font: 600 18px Nunito, sans-serif;
+    transition: background-color 0.2s;
+    }
+
+h1 {
+    padding-top: 40px;
+    padding-left: 30px;
+    color: 	#FF3F00;
+    font: 600 40px Nunito, sans-serif;
+    }

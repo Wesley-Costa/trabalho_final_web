@@ -1,0 +1,109 @@
+
+#container  {  	
+	margin: 1em auto;  	
+	width: 900px;  	
+	background: #CCF2FF;  
+	}  
+
+.menu  {  
+    float: left;
+    margin: 1em auto; 
+    width: 400px;  	
+    background: #CCF2FF; 
+    }
+
+.contents  {  	
+    float: right;  	
+    width: 450px;  
+    height: 550px;	
+    background: #CCF2FF;  
+    }
+
+body  {  		
+	background: #CCF2FF;  
+	}
+
+h1 {
+    margin: 10px;
+    padding-top: 20px;
+    padding-left: 80px;
+    color: 	#FF3F00;
+    font: 600 40px Nunito, sans-serif;
+    }
+
+form {
+    width: 400px;
+    background: #CCF2FF;
+    border: 10px solid #CCF2FF;
+    outline: none;
+    display: flex; 
+    border: 1px solid #0000;
+    }
+
+fieldset{
+    border: 10px solid #CCF2FF;
+}
+
+.inputtext {
+    width: 380px;
+    height: 50px;
+    background: #F5F8FA;
+    border: 1px solid rgb(199, 195, 195);
+    outline: none;
+    display: flex;
+    border-radius: 10px;
+    }
+
+label{
+    padding-left: 20px;
+    font: 600 15px Nunito, sans-serif;
+    }
+
+a{
+    display: flex;
+    padding-top: 5px;
+    padding-left: 300px;
+    font: 500 15px Nunito, sans-serif;
+    }
+
+p {
+    padding-left: 10px;
+}
+
+.imagefloat{
+    padding-left: 65px;
+    padding-bottom: 10px;
+    float: left;
+    width: 50px;
+    height: 50px;
+    }
+
+.imagelogin{  	
+    padding-top: 80px;
+    padding-left: 0px;
+    float: left;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    }
+
+button{
+    float: center;
+    width: 380px;
+    height: 60px;
+    margin-left: 20px;
+    cursor: pointer;
+    background: #FF6532;
+    border-radius: 20px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 600 18px Nunito, sans-serif;
+    transition: background-color 0.2s;
+    }
+
+form.login-form button.confirm-button:hover {
+    background: #FFFFFF;
+    color: #FF6532;
+}
