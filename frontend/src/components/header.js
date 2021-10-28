@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/components/header.css';
 import { FaUser, FaDog, FaCog, FaBookOpen } from 'react-icons/fa';
 
@@ -8,23 +9,30 @@ export default function Header(){
         <header id="main-header">
             <title>Hotel Pet</title>
             <user>
-                <form action="">	
-                    <button className="user-button" type='submit' formaction="editarPerfil.html">
-                    <icon><FaUser/></icon> Usuário </button>
-                </form>
+                <Link to="/Usuario/EditarUsuario" className="user-button" style={{ textDecoration: 'none' }}>
+                    <icon><FaUser/></icon> Usuário
+                </Link>
             </user>
             <aside>
                 <h1><i class="fas fa-paw"></i> Hotel Pet</h1>
-                <form action="">
-                    <button className="menu-button" type='submit' formaction="pets.html">
-                        <icon><FaDog/></icon>Pet</button>
-                    <button className="menu-button" type='submit' formaction="usuarios.html"> 
-                        <icon><FaUser/></icon>Usuários</button>
-                    <button className="menu-button" type='submit' formaction="configuracoes.html">
-                        <icon><FaCog/></icon>Configurações</button>
-                    <button className="menu-button" type='submit' formaction="reservas.html">
-                        <icon><FaBookOpen/></icon>Reservas</button>
-                </form>
+                <div id="box">
+                    <br/>
+                    <Link to="/Pet" className="menu-button" style={{ textDecoration: 'none' }}>
+                        <icon><FaDog/></icon>Pet
+                    </Link>
+                    <br/>   
+                    <Link to="/Usuario" className="menu-button" style={{ textDecoration: 'none' }}>
+                        <icon><FaUser/></icon>Usuários
+                    </Link>
+                    <br/>
+                    <Link to="/Configuracoes" className="menu-button" style={{ textDecoration: 'none' }}>
+                        <icon><FaCog/></icon>Configurações
+                    </Link>
+                    <br/>
+                    <Link to="/Reserva" className="menu-button" style={{ textDecoration: 'none' }}>
+                        <icon><FaBookOpen/></icon>Reservas
+                    </Link>
+                </div>
             </aside>	
         </header>
     ); 

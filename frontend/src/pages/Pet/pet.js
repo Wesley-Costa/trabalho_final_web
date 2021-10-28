@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/header';
 
-export default function Reserva() {
+export default function Pet() {
     
     
     
@@ -10,7 +10,7 @@ export default function Reserva() {
             <Header />
             <div >
                 <br/>
-                <strong>Reserva</strong>
+                <strong>Pet</strong>
             </div>
         </div>
     )

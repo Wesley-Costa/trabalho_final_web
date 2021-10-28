@@ -33,18 +33,27 @@ icon {
 
 aside{
     float: left;
+    width: 250px;
+    height: 400px;
     padding-left: 40px;
     padding-right: 20px;
     padding-bottom: 250px;
+    display: block;
     background: #CCF2FF;
     border-right: 1px solid rgb(199, 195, 195);
     }
 
+#box{
+    height: 350px;
+    width: 250px;
+    display: block;
+}
+
 .menu-button{
-    float: center;
+    float: right;
     width: 250px;
     height: 60px;
-    border: 1px solid rgb(199, 195, 195);
+    border: 0px solid rgb(199, 195, 195);
     cursor: pointer;
     background: #CCF2FF;
     color: rgb(10, 41, 82);
@@ -52,7 +61,8 @@ aside{
     justify-content: left;
     align-items: center;
     font: 600 18px Nunito, sans-serif;
-    transition: background-color 0.2s;
+    color: rgb(10, 41, 82);
+   
     }
 
 h1 {

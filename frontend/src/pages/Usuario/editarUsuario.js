@@ -1,8 +1,7 @@
 import React from 'react';
 import Header from '../../components/header';
 
-export default function Reserva() {
-    
+export default function EditarUsuario() {
     
     
     return (
@@ -10,8 +9,9 @@ export default function Reserva() {
             <Header />
             <div >
                 <br/>
-                <strong>Reserva</strong>
+                <strong>Editar dados do usuário</strong>
             </div>
         </div>
     )
+
 }

@@ -7,35 +7,8 @@ import logoImg from '../../img/pet.jpg';
 import googleImg from '../../img/google.png';
 import facebookImg from '../../img/facebook.png';
 import twitterImg from '../../img/twitter.png';
-// import StoreContext from '../../components/Store/Context'
 
 export default function Login() {
-
-    // const [email, setEmail] = useState<string>("");
-    // const [senha, setSenha] = useState<string>("");
-
-    // async function Login(e){
-    //     e.preventDefault();
-    //     const response = await api.post("/sessions", { 
-    //         email, senha
-    //     })
-    //     if (response.status === 200) {
-    //         localStorage.setItem("email", response.data.email);
-    //         localStorage.setItem("senha", response.data.senha);
-
-    //         window.location.href = "/app";
-    //     }else{
-    //         alert("Usuário não encontrado!");
-    //     }
-
-    // }
-
-    // useEffect(()=>{
-    //     const name = localStorage.getItem("name");
-    //     if (nome){
-    //         window.location.href = "/app";
-    //     }
-    // },[])
 
     function initUser() {
         return {
@@ -58,32 +31,10 @@ export default function Login() {
 
     async function login(e) {
         e.preventDefault();
-        const response = await api.get('/users/auth', user)
-        if (response.status === 200) {
-            localStorage.setItem("email", response.data.email);
-            localStorage.setItem("senha", response.data.senha);
-
-            window.location.href = "/app";
-            console.log(response)
-            return { token: user.id }
-        } else {
-            alert("Usuário não encontrado!");
-            console.log(response)
-        }
-
+        history.push("/Home");
+            
     }
 
-    // const { setToken } = useContext(StoreContext);
-    // function onSubmit(event) {
-    //     event.preventDefault();
-    //     const token = login();
-
-    //     if (token) {
-    //         setToken(token);
-    //         return history.push('/app');
-    //     }
-    //     setUser(initUser);
-    // }
 
     return (
         <div id='container'>
@@ -102,13 +53,13 @@ export default function Login() {
                         </fieldset>
                     </form>
                     <p><input type="checkbox" /> mantenha-me conectado</p>
-                    <Link to="/">Esqueci a senha</Link>
-                    <p>-----------------------------------ou-------------------------------------</p>
+                    <Link to="/Login">Esqueci a senha</Link>
+                    <p>--------------------------------ou----------------------------------</p>
                     <p><img className="imagefloat" src={googleImg} alt="" /></p>
                     <p><img className="imagefloat" src={facebookImg} alt="" /></p>
                     <p><img className="imagefloat" src={twitterImg} alt="" /></p>
-                    <form className='login-form' onSubmit={login}>
-                        <button className='confirm-button' type='submit'>
+                    <form className='login-form' >
+                        <button className='confirm-button' type='submit'  onSubmit={login}>
                             Enviar
                         </button>
                     </form>
