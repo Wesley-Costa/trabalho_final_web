@@ -1,0 +1,31 @@
+user{
+    float: right;
+    padding-top: 20px;
+    padding-right: 100px;
+
+    }
+
+.user-button{
+    width: 50px;
+    height: 40px;
+    text-decoration: none;
+    margin: 5px;
+    padding-right: 100px;
+    border-radius: 20px;
+    background: #CCF2FF;
+    color: rgb(10, 41, 82);
+    float: left;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font: 600 18px Nunito, sans-serif;
+    transition: background-color 0.2s;
+    }
+
+icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    padding-right: 20px;
+    padding-left: 20px;
+}

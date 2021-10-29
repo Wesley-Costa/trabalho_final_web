@@ -1,5 +1,7 @@
 import React from 'react';
-import Header from '../../components/header';
+import Menu from '../../components/menu';
+import User from '../../components/user';
+import '../../styles/pages/pet.css';
 
 export default function Pet() {
     
@@ -7,7 +9,8 @@ export default function Pet() {
     
     return (
         <div>
-            <Header />
+            <User />
+            <Menu />
             <div >
                 <br/>
                 <strong>Pet</strong>

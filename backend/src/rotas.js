@@ -4,14 +4,12 @@ const UserController = require('./controller/UserController');
 const PetsController = require('./controller/PetsController');
 const ReservaController = require('./controller/ReservaController');
 const ConfiguracaoController = require('./controller/ConfiguracaoController');
-const ControllerLogin = require('./controller/auth/ControllerLogin');
 
 routes.get('/users', UserController.list);
 routes.post('/users', UserController.create);
 routes.get('/users/:id', UserController.show);
 routes.put('/users/:id', UserController.update);
 routes.delete('/users/:id', UserController.delete);
-routes.get('/users/auth', UserController.auth);
 
 routes.get('/pets', PetsController.list);
 routes.post('/pets', PetsController.create);

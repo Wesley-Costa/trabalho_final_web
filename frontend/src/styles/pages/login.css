@@ -1,29 +1,26 @@
+body  {  		
+	background: #CCF2FF;  
+	}
 
-#container  {  	
+#login-page  {  	
 	margin: 1em auto;  	
 	width: 900px;  	
 	background: #CCF2FF; 
 	}  
 
-.menu  {  
+.logo  {  
     float: left;
     margin: 1em auto; 
     width: 400px;  	
     background: #CCF2FF; 
-    border: 1px solid #0000;
     }
 
-.contents  {  	
+.login-main  {  	
     float: right;  	
-    width: 430px;  
+    width: 370px;  
     height: 560px;	
     background: #CCF2FF; 
-    border: 1px solid #0000; 
     }
-
-body  {  		
-	background: #CCF2FF;  
-	}
 
 h1 {
     margin: 10px;
@@ -34,22 +31,17 @@ h1 {
     display: flex;
     }
 
-form {
-    width: 380px;
+fieldsetLogin {
+    float: left;
     background: #CCF2FF;
-    border: 10px solid #CCF2FF;
+    width: 340px;
+    border: 0px solid rgb(199, 195, 195);
     outline: none;
-    display: flex; 
-    border: 1px solid #0000;
+    display: block; 
     }
 
-fieldset{
-    padding-left: 20px;
-    border: 1px solid #CCF2FF;
-}
-
-.inputtext {
-    width: 350px;
+.inputtextLogin {
+    width: 320px;
     height: 50px;
     background: #F5F8FA;
     border: 1px solid rgb(199, 195, 195);
@@ -58,15 +50,21 @@ fieldset{
     border-radius: 10px;
     }
 
+.checkbox {
+    width: 40px;
+    height: 40px;
+   
+    }
+
 label{
     padding-left: 20px;
     font: 600 15px Nunito, sans-serif;
     }
 
-a{
+.login-main a{
     display: flex;
     padding-top: 5px;
-    padding-left: 270px;
+    padding-left: 230px;
     font: 500 15px Nunito, sans-serif;
     }
 
@@ -75,11 +73,11 @@ p {
 }
 
 .imagefloat{
-    padding-left: 65px;
+    padding-left: 60px;
     padding-bottom: 10px;
     float: left;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     }
 
 .imagelogin{  	
@@ -91,11 +89,10 @@ p {
     display: flex;
     }
 
-button{
+.button-Login{
     float: center;
-    width: 380px;
+    width: 350px;
     height: 60px;
-    margin-left: 20px;
     cursor: pointer;
     background: #FF6532;
     border-radius: 20px;
@@ -107,7 +104,7 @@ button{
     transition: background-color 0.2s;
     }
 
-form.login-form .confirm-button:hover {
+form.login-form .button-Login:hover {
     background: #FFFFFF;
     color: #FF6532;
 }

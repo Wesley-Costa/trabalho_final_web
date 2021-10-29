@@ -1,5 +1,7 @@
 import React from 'react';
-import Header from '../../components/header';
+import Menu from '../../components/menu';
+import User from '../../components/user';
+import '../../styles/pages/usuario.css';
 
 export default function Usuario() {
     
@@ -7,7 +9,8 @@ export default function Usuario() {
     
     return (
         <div>
-            <Header />
+            <User />
+            <Menu />
             <div >
                 <br/>
                 <strong>Usuario</strong>
