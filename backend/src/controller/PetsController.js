@@ -29,7 +29,7 @@ module.exports = {
                     .select('*');
         return res.json(pet);
     },
-
+     
     async update(req, res){
         const {id} = req.params;
         const {raca, tamanho, nome, tipo} = req.body

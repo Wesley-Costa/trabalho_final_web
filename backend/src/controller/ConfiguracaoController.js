@@ -28,12 +28,12 @@ module.exports = {
 
     async update(req, res){
         const {id} = req.params;
-        const {valor, valorDiaria} = req.body
+        const {vagas, valorDiaria} = req.body
         await connection('configuracao')
             .where('id',id)
             .update({
                 id,
-                valor,
+                vagas,
                 valorDiaria
         });
         return res.status(204).send();
