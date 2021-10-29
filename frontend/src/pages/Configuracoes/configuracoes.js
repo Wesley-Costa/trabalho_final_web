@@ -1,11 +1,44 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import '../../styles/pages/configuracoes.css';
+import api from '../../services/api'
+import InputMask from 'react-input-mask'
 
 export default function Configuracoes() {
     
+    const history = useHistory();
+    const id = 'ebdab5e1';
+
+    const initConfig = {
+        valorDiaria:'',
+        vagas: ''
+    }
+    const [config, setConfig] = useState(initConfig);
+
+    useEffect(()=>{
+        api.get(`/configuracao/${id}`).then(response=>{
+                setConfig(...response.data)
+        })
+    },[]);
+
+    function onSubmit(ev){
+        ev.preventDefault();
+        api.put(`/configuracao/${id}`, config).then((response)=>{
+                history.push('/Home')
+        })
+    }
+
+    function onChange(ev){
+        const {name, value} = ev.target;
+        setConfig({...config, [name]:value})
+        console.log(config, '...')
+    }
     
+    function limpar() {
+        setConfig(initConfig)
+    }
     
     return (
         <div id = "config-page">
@@ -13,22 +46,23 @@ export default function Configuracoes() {
             <Menu />
             <div id = "main-config">
                 <h2>Configurações</h2>
-                <label>Valor da diária</label>
-                <form action="">
-                    <input class="inputtext" type="char" name="" id="" value=""></input>
+                
+                <form onSubmit={onSubmit}>
+                    <label>Valor da diária R$</label>
+                    <input className="inputtext" type="float" name="valorDiaria" id="valorDiaria" onChange={onChange} value={config.valorDiaria}/>
+                    <br/>                   
+                    <label>Vagas Disponíveis</label>
+                    <input className="inputtext" type="integer" name="vagas" id="vagas" onChange={onChange} value={config.vagas}/>
+                    <br/>
+                    <button className="confirm-button" type='submit' >
+                        Salvar
+                    </button>
                 </form>
-                <br/>
-                <label>Vagas Disponíveis</label><form action="">
-                    <input class="inputtext" type="char" name="" id="" value=""></input>
-                </form>
-                <br/>
-                <button className="confirm-button" type='submit' >
-                    Salvar
-                </button>
-
-                <button className="confirm-button" type='submit' >
-                    Limpar
-                </button>
+                <div className="actions">
+                    <button className="button" onClick={limpar}>
+                        Limpar
+                    </button>
+                </div>
             </div >
         </div>
     )

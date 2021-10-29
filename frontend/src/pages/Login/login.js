@@ -34,8 +34,7 @@ export default function Login() {
         history.push("/Home");
             
     }
-
-
+    
     return (
         <div id='login-page'>
             <div className="logo">

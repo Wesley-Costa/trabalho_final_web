@@ -43,5 +43,24 @@ body  {
     }
 
 
+    
+button{
+    float: left;
+    width: 98px;
+    height: 40px;
+    border: 1px solid rgb(199, 195, 195);
+    cursor: pointer;
+    background: #ffff;
+    color: rgb(10, 41, 82);
+    display: inline;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+    font: 500 16px Nunito, sans-serif;
+    transition: background-color 0.2s;
+}
 
-
+.button:hover {
+    background: rgb(18, 60, 114);
+    color: #ffff;
+}

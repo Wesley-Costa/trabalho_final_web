@@ -16,7 +16,7 @@ export default function Routes() {
                 <Route path='/Reserva' component={Reserva} />
                 <Route path='/Usuario' component={Usuario} />
                 <Route path='/Usuario/editar' component={EditarUsuario} />
-                <Route path='/Configuracoes' component={Configuracoes} />
+                <Route path={`/Configuracoes`} component={Configuracoes} />
                 <Route path='/Pet' component={Pet} />
             </Switch>
         </BrowserRouter>
