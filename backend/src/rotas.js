@@ -19,7 +19,7 @@ routes.delete('/pets/:id', PetsController.delete);
 
 routes.get('/reserva', ReservaController.list);
 routes.post('/reserva', ReservaController.create);
-routes.get('/reserva/:id', ReservaController.show);
+routes.post('/reserva/pesquisa', ReservaController.show);
 routes.put('/reserva/:id', ReservaController.update);
 routes.delete('/reserva/:id', ReservaController.delete);
 
