@@ -55,7 +55,7 @@ export default function Login() {
                 </form>
                 <p><input type="checkbox" /> mantenha-me conectado</p>
                 <Link to="/Login">Esqueci a senha</Link>
-                <p>--------------------------------ou--------------------------------</p>
+                <p>------------------------------ou------------------------------</p>
                 <p><img className="imagefloat" src={googleImg} alt="" /></p>
                 <p><img className="imagefloat" src={facebookImg} alt="" /></p>
                 <p><img className="imagefloat" src={twitterImg} alt="" /></p>

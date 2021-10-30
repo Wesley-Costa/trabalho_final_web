@@ -9,6 +9,7 @@ body  {
     font: 500 20px Nunito, sans-serif;
     color: rgb(10, 41, 82);
     display: inline-block;
+    background: #CCF2FF;
 }
 
 .new-button{
@@ -32,7 +33,7 @@ body  {
 
 #main-reserva .inputtext {
     width: 250px;
-    height: 40px;
+    height: 30px;
     border: 1px solid rgb(199, 195, 195);
     outline: none;
     display: flex;
@@ -41,14 +42,13 @@ body  {
     margin-bottom: 10px;
     float: left;
     background: #F5F8FA;
-    color: rgb(10, 41, 82);
-    font: 500 18px Nunito, sans-serif;
     }
 
 #main-reserva label{
     font: 500 15px Nunito, sans-serif;
     padding-left: 10px;
     padding-right: 10px;
+    display: inline-block;
 }
 
 #main-reserva label1{
@@ -68,12 +68,12 @@ body  {
     
 .inputdate {
     width: 120px;
-    height: 40px;
+    height: 30px;
     border: 1px solid rgb(199, 195, 195);
     outline: none;
     display: flex;
     border-radius: 10px;
-    margin-right: 20px;
+    margin-right: 5px;
     margin-bottom: 10px;
     float: left;
     background: #F5F8FA;
@@ -94,8 +94,14 @@ body  {
 }
 
 #main-reserva .confirm-button:hover {
-    background: rgb(18, 60, 114);
+    background: rgb(74, 142, 231);
     color: #ffff;
 }
 
+#table-reserva{
+    max-width: 750px;
+    margin-top: 10px;
+    display: inline-block;
+
+}
 

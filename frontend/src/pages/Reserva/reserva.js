@@ -3,10 +3,15 @@ import { Link } from 'react-router-dom'
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import '../../styles/pages/reserva.css';
-import { FaPlus } from 'react-icons/fa';
+import { FaPen, FaPlus, FaSearch } from 'react-icons/fa';
+import MaterialTable from '@material-table/core';
+
+import { localizationBR } from '../../components/localization';
 import api from '../../services/api'
 
 export default function Reserva() {
+
+    const data = []
 
     const initReserva = {
         id: '',
@@ -18,17 +23,8 @@ export default function Reserva() {
         valor: ''
     }
     const [reserva, setReserva] = useState(initReserva);
-    // const history = useHistory()
 
-    // useEffect(() => {
-    //     if (id) {
-    //         api.get(`/configuracao/${id}`).then(response => {
-    //             setConfig(...response.data)
-    //         })
-    //     }
-    // }, [id]);
-
-    function onSubmit(ev, ind) {
+    function onSubmit(ev) {
         ev.preventDefault();
         api.post('/reserva/pesquisa', reserva).then((response) => {
             console.log(response.data)
@@ -43,6 +39,8 @@ export default function Reserva() {
     function limpar() {
         setReserva(initReserva)
     }
+
+    
 
     return (
         <div>
@@ -65,7 +63,7 @@ export default function Reserva() {
                     <label>Proprietário</label><label3>Total R$</label3>
                     <input class="inputtext" type="char" name="proprietario_id" id="proprietario_id" onChange={onChange} value={reserva.proprietario_id} />
                     <input class="inputtext" type="value" name="valor" id="valor" onChange={onChange} value={reserva.valor} />
-
+                    <br/>
                     <label>Status</label><label2>Pet</label2>
                     <input class="inputtext" type="datalis" name="status" id="status" onChange={onChange} value={reserva.status} />
                     <input class="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} />
@@ -79,6 +77,45 @@ export default function Reserva() {
                         Limpar
                     </button>
                 </div>
+            </div>
+            <div id="table-reserva">
+                <MaterialTable
+                    localization={localizationBR}
+                    columns={[
+                        { title: 'Id', field: 'id', align: 'center' },
+                        { title: 'Pet', field: 'pet', align: 'center' },
+                        { title: 'Chegada', field: 'inicio', type: 'date', align: 'center' },                             
+                        { title: 'Partida', field: 'fim', type: 'date', align: 'center' },
+                        { title: 'Status', field: 'status', align: 'center' },
+                        { title: 'Total', field: 'valor', align: 'center' },
+                    ]}
+                    data={ data }
+                    options={{
+                        actionsColumnIndex: -1,
+                        toolbar:false,
+                        paginationPosition: false,
+                        headerStyle: {
+                        backgroundColor: '#ACDBEB',
+                        color: 'rgb(10, 41, 82)',
+                        },
+                        
+                        columnsButton: true,
+                        showFirstLastPageButtons: true,
+                        grouping: false,
+                    }}
+                    actions={[
+                        {
+                        icon: FaPen,
+                        tooltip: 'Editar Usuário',
+                        onClick: (event, rowData) => alert("Ir para Editar ")
+                        },
+                        {
+                        icon: FaSearch,
+                        tooltip: 'Visualizar',
+                        onClick: (event, rowData) => alert("ir para visualizar ")
+                        },
+                    ]}
+                />
             </div>
         </div>
     )

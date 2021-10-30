@@ -28,14 +28,13 @@ body  {
     }
 
 .confirm-button:hover {
-    background: rgb(18, 60, 114);
+    background: rgb(74, 142, 231);
     color: #ffff;
 }
 
 .inputtext {
     width: 220px;
     height: 40px;
-    padding-left: 10px;
     background: #F5F8FA;
     border: 1px solid rgb(199, 195, 195);
     outline: none;
@@ -60,6 +59,6 @@ button{
 }
 
 .button:hover {
-    background: rgb(18, 60, 114);
+    background: rgb(74, 142, 231);
     color: #ffff;
 }
