@@ -33,7 +33,8 @@ module.exports = {
         .where('status', 'like', `%${status || ''}%`)
         .where('proprietario_id', 'like', `%${proprietario_id || ''}%`)
         .where('valor', 'like', `%${valor || ''}%`)
-            .select('*');
+        .select('*');
+
         return res.json(reserva);
     },
 
