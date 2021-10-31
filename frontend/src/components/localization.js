@@ -2,7 +2,6 @@ export const localizationBR = {
     body: {
       emptyDataSourceMessage: 'Sem dados para exibir',
       deleteText: 'Tem de que deseja exlcuir esta linha?',
-      emptyDataSourceMessage: 'Sem dados para exibir',
       addTooltip: 'Adicionar',
       deleteTooltip: 'Deletar',
       editTooltip: 'Editar',

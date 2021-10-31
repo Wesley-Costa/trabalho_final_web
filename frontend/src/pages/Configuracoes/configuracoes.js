@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Menu from '../../components/menu';
 import User from '../../components/user';
-import '../../styles/pages/configuracoes.css';
+import './configuracoes.css';
 import api from '../../services/api'
 
 export default function Configuracoes() {

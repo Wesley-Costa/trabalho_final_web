@@ -1,10 +1,9 @@
 import React from 'react';
 import Menu from '../../components/menu';
 import User from '../../components/user';
-import './usuario.css';
+import './editarUsuario.css';
 
-export default function Usuario() {
-    
+export default function EditarUsuario() {
     
     
     return (
@@ -13,8 +12,9 @@ export default function Usuario() {
             <Menu />
             <div >
                 <br/>
-                <strong>Usuario</strong>
+                <strong>Editar dados do usuário</strong>
             </div>
         </div>
     )
+
 }

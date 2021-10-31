@@ -1,9 +1,9 @@
+import './editarPet.css';
 import React from 'react';
 import Menu from '../../components/menu';
 import User from '../../components/user';
-//import '../../styles/pages/editarUsuario.css';
 
-export default function EditarUsuario() {
+export default function EditarPet() {
     
     
     return (
@@ -12,7 +12,7 @@ export default function EditarUsuario() {
             <Menu />
             <div >
                 <br/>
-                <strong>Editar dados do usuário</strong>
+                <strong>Editar Pet</strong>
             </div>
         </div>
     )

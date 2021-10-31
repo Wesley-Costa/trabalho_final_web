@@ -1,11 +1,13 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import Menu from '../../components/menu';
 import User from '../../components/user';
-import './usuario.css';
+import './fazerReserva.css';
 
-export default function Usuario() {
+export default function FazerReserva() {
     
-    
+    const {id} = useParams()
+    console.log(id)
     
     return (
         <div>
@@ -13,7 +15,7 @@ export default function Usuario() {
             <Menu />
             <div >
                 <br/>
-                <strong>Usuario</strong>
+                <strong>Fazer reserva</strong>
             </div>
         </div>
     )

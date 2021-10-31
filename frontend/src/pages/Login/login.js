@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FaPaw } from 'react-icons/fa';
 //import api from "../../services/api";
-import '../../styles/pages/login.css';
+import './login.css';
 import logoImg from '../../img/pet.jpg';
 import googleImg from '../../img/google.png';
 import facebookImg from '../../img/facebook.png';

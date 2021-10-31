@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Menu from '../../components/menu';
 import User from '../../components/user';
-import '../../styles/pages/reserva.css';
+import './reserva.css';
 import { FaPen, FaPlus, FaSearch } from 'react-icons/fa';
 import MaterialTable from '@material-table/core';
-
 import { localizationBR } from '../../components/localization';
 import api from '../../services/api'
 
 export default function Reserva() {
 
-    const data = []
+    const [data, setData] = useState([]);
+    const history = useHistory();
 
     const initReserva = {
         id: '',
@@ -27,8 +27,9 @@ export default function Reserva() {
     function onSubmit(ev) {
         ev.preventDefault();
         api.post('/reserva/pesquisa', reserva).then((response) => {
-            console.log(response.data)
+            setData(response.data)
         })
+        
     }
 
     function onChange(ev) {
@@ -38,8 +39,8 @@ export default function Reserva() {
 
     function limpar() {
         setReserva(initReserva)
+        setData([])
     }
-
     
 
     return (
@@ -48,7 +49,7 @@ export default function Reserva() {
             <Menu />
             <div id="main-reserva">
                 <h2>Reservas</h2>
-                <Link to="/Pet" className="new-button" >
+                <Link to="/FazerReserva" className="new-button" >
                     <icon><FaPlus /></icon>Nova reserva
                 </Link>
                 <br />
@@ -106,13 +107,13 @@ export default function Reserva() {
                     actions={[
                         {
                         icon: FaPen,
-                        tooltip: 'Editar Usuário',
-                        onClick: (event, rowData) => alert("Ir para Editar ")
+                        tooltip: 'Editar Reserva',
+                        onClick: (event, rowData) => history.push(`/EditarReserva/${rowData.id}`)
                         },
                         {
                         icon: FaSearch,
                         tooltip: 'Visualizar',
-                        onClick: (event, rowData) => alert("ir para visualizar ")
+                        onClick: (event, rowData) => history.push(`/VerReserva/${rowData.id}`)
                         },
                     ]}
                 />

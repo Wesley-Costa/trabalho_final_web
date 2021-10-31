@@ -1,10 +1,9 @@
+import './verReserva.css';
 import React from 'react';
 import Menu from '../../components/menu';
 import User from '../../components/user';
-import './usuario.css';
 
-export default function Usuario() {
-    
+export default function verReserva() {
     
     
     return (
@@ -13,8 +12,9 @@ export default function Usuario() {
             <Menu />
             <div >
                 <br/>
-                <strong>Usuario</strong>
+                <strong>Ver Reserva</strong>
             </div>
         </div>
     )
+
 }

@@ -8,7 +8,7 @@ export default function User(){
     return(
        
         <user>
-            <Link to="/Usuario/EditarUsuario" className="user-button">
+            <Link to="/EditarUsuario" className="user-button">
                 <icon><FaUser/></icon> Usuário
             </Link>
         </user>
