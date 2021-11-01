@@ -27,7 +27,7 @@ export default function Routes() {
                 <Route path='/Usuario' component={Usuario} />
                 <Route path='/EditarUsuario/:id' component={EditarUsuario} />
                 <Route path='/CriarConta' component={CriarConta} />
-                <Route path={`/Configuracoes`} component={Configuracoes} />
+                <Route path='/Configuracoes' component={Configuracoes} />
                 <Route path='/Pet' component={Pet} />
                 <Route path='/CadastrarPet' component={CadastrarPet} />
                 <Route path='/EditarPet/:id' component={EditarPet} />

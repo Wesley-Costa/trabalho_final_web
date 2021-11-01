@@ -15,11 +15,11 @@ export default function Reserva() {
 
     const initReserva = {
         id: '',
+        proprietario: '',
         pet: '',
         inicio: '',
         fim: '',
         status: '',
-        proprietario_id: '',
         valor: ''
     }
     const [reserva, setReserva] = useState(initReserva);
@@ -29,7 +29,6 @@ export default function Reserva() {
         api.post('/reserva/pesquisa', reserva).then((response) => {
             setData(response.data)
         })
-        
     }
 
     function onChange(ev) {
@@ -42,7 +41,6 @@ export default function Reserva() {
         setData([])
     }
     
-
     return (
         <div>
             <User />
@@ -55,17 +53,17 @@ export default function Reserva() {
                 <br />
                 <br />
                 <br />
-                <label>Id</label><label1>Período:</label1>
+                <label>Id:</label><label1>Período:</label1>
                 <form onSubmit={onSubmit}>
                     <input class="inputtext" type="char" name="id" id="id" onChange={onChange} value={reserva.id} />
                     <input class="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
                     <input class="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} />
 
-                    <label>Proprietário</label><label3>Total R$</label3>
-                    <input class="inputtext" type="char" name="proprietario_id" id="proprietario_id" onChange={onChange} value={reserva.proprietario_id} />
+                    <label>Proprietário:</label><label3>Total R$</label3>
+                    <input class="inputtext" type="char" name="proprietario" id="proprietario" onChange={onChange} value={reserva.proprietario} />
                     <input class="inputtext" type="value" name="valor" id="valor" onChange={onChange} value={reserva.valor} />
                     <br/>
-                    <label>Status</label><label2>Pet</label2>
+                    <label>Status:</label><label2>Pet:</label2>
                     <input class="inputtext" type="datalis" name="status" id="status" onChange={onChange} value={reserva.status} />
                     <input class="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} />
 

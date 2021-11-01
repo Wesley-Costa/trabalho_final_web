@@ -25,11 +25,19 @@ module.exports = {
         res.json(users);
     },
 
-    async show(req,res){
-        const {id} = req.params;
+    async show(req, res) {
+        const {id, email, senha, nome, sobrenome, telefone,  funcao, dataCadastro, imagem, status} = req.body
         const user = await connection('users')
-                    .where('id', id)
-                    .select('*');
+        .where('id', 'like', `%${id || ''}%`)
+        .where('email', 'like', `%${email || ''}%`)
+        .where('nome', 'like', `%${nome || ''}%`)
+        .where('sobrenome', 'like', `%${sobrenome || ''}%`)
+        .where('telefone', 'like', `%${telefone || ''}%`)
+        .where('funcao', 'like', `%${funcao || ''}%`)
+        .where('dataCadastro', 'like', `%${dataCadastro || ''}%`)
+        .where('status', 'like', `%${status || ''}%`)
+        .select('*');
+
         return res.json(user);
     },
 
@@ -39,7 +47,6 @@ module.exports = {
         await connection('users')
             .where('id',id)
             .update({
-                id,
                 email, 
                 senha, 
                 nome, 
@@ -58,6 +65,4 @@ module.exports = {
         await connection('users').where('id', id).delete();
         return res.status(204).send();
     }
-
-
 }

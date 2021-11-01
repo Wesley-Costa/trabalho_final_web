@@ -4,10 +4,11 @@ const connection = require('../database/connection')
 module.exports = {
     async create(req, res) {
         const id = crypto.randomBytes(4).toString('hex')
-        const { pet, inicio, fim, status, proprietario_id, pet_id, valor } = req.body
+        const { pet, proprietario, inicio, fim, status, proprietario_id, pet_id, valor } = req.body
         await connection('reserva').insert({
             id,
             pet,
+            proprietario,
             inicio,
             fim,
             status,
@@ -24,10 +25,11 @@ module.exports = {
     },
 
     async show(req, res) {
-        const { id, pet, inicio, fim, status, proprietario_id, valor } = req.body
+        const { id, pet, proprietario, inicio, fim, status, proprietario_id, valor } = req.body
         const reserva = await connection('reserva')
         .where('id', 'like', `%${id || ''}%`)
         .where('pet', 'like', `%${pet || ''}%`)
+        .where('proprietario', 'like', `%${proprietario || ''}%`)
         .where('inicio', 'like', `%${inicio || ''}%`)
         .where('fim', 'like', `%${fim || ''}%`)
         .where('status', 'like', `%${status || ''}%`)
@@ -40,12 +42,12 @@ module.exports = {
 
     async update(req, res) {
         const { id } = req.params;
-        const { pet, inicio, fim, status, proprietario_id, pet_id, valor } = req.body
+        const { pet, proprietario, inicio, fim, status, proprietario_id, pet_id, valor } = req.body
         await connection('reserva')
             .where('id', id)
             .update({
-                id,
                 pet,
+                proprietario,
                 inicio,
                 fim,
                 status,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import './pet.css';
@@ -11,24 +11,22 @@ import api from '../../services/api'
 export default function Pet() {
     
     const [data, setData] = useState([]);
+    const history = useHistory();
 
     const initPet = {
         id: '',
         raca: '',
         tamanho: '',
         nome: '',
-        tipo: '',
-        imagem: '',
-        usuario_id: ''
     }
     const [pet, setPet] = useState(initPet);
 
     function onSubmit(ev) {
         ev.preventDefault();
-        api.post('/pet/pesquisa', pet).then((response) => {
+        api.post('/pets/pesquisa', pet).then((response) => {
             setData(response.data)
         })
-        
+        console.log(data)
     }
 
     function onChange(ev) {
@@ -40,7 +38,6 @@ export default function Pet() {
         setPet(initPet)
         setData([])
     }
-    
     
     return (
         <div>
@@ -54,13 +51,13 @@ export default function Pet() {
                 <br />
                 <br />
                 <br />
-                <label>Id</label><label1>Raça:</label1>
+                <label>Id:</label><label1>Raça:</label1>
                 <form onSubmit={onSubmit}>
                     <input class="inputtext" type="char" name="id" id="id" onChange={onChange} value={pet.id} />
                     <input class="inputtext" type="char" name="raca" id="raca" onChange={onChange} value={pet.raca} />
-                    <label>Nome</label><label3>Tamanho</label3>
+                    <label>Nome:</label><label3>Tamanho:</label3>
                     <input class="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={pet.nome} />
-                    <input class="inputtext" type="value" name="tamanho" id="tamanho" onChange={onChange} value={pet.tamanho} />
+                    <input class="inputtext" type="char" name="tamanho" id="tamanho" onChange={onChange} value={pet.tamanho} />
                     <br/>
                     <button class="confirm-button" type='submit'>
                         Pesquisar
@@ -80,7 +77,7 @@ export default function Pet() {
                         { title: 'Nome', field: 'nome', align: 'center' },
                         { title: 'Tipo', field: 'tipo', align: 'center' },                             
                         { title: 'Raça', field: 'raca', align: 'center' },
-                        { title: 'Tamanho', field: 'status', align: 'center' },
+                        { title: 'Tamanho', field: 'tamanho', align: 'center' },
                     ]}
                     data={ data }
                     options={{
@@ -100,12 +97,12 @@ export default function Pet() {
                         {
                         icon: FaPen,
                         tooltip: 'Editar Usuário',
-                        onClick: (event, rowData) => alert("Ir para Editar ")
+                        onClick: (event, rowData) => history.push(`/EditarPet/${rowData.id}`)
                         },
                         {
                         icon: FaSearch,
                         tooltip: 'Visualizar',
-                        onClick: (event, rowData) => alert("ir para visualizar ")
+                        onClick: (event, rowData) => history.push(`/VisualizarPet/${rowData.id}`)
                         },
                     ]}
                 />

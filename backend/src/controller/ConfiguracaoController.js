@@ -32,7 +32,6 @@ module.exports = {
         await connection('configuracao')
             .where('id',id)
             .update({
-                id,
                 vagas,
                 valorDiaria
         });

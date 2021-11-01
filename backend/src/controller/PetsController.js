@@ -22,25 +22,30 @@ module.exports = {
         res.json(pets);
     },
 
-    async show(req,res){
-        const {id} = req.params;
+    async show(req, res) {
+        const {id, raca, tamanho, nome} = req.body
         const pet = await connection('pets')
-                    .where('id', id)
-                    .select('*');
+        .where('id', 'like', `%${id || ''}%`)
+        .where('raca', 'like', `%${raca || ''}%`)
+        .where('tamanho', 'like', `%${tamanho || ''}%`)
+        .where('nome', 'like', `%${nome || ''}%`)
+        .select('*');
+
         return res.json(pet);
     },
      
     async update(req, res){
         const {id} = req.params;
-        const {raca, tamanho, nome, tipo} = req.body
+        const {raca, tamanho, nome, tipo, imagem, usuario_id} = req.body
         await connection('pets')
             .where('id',id)
             .update({
-                id,
                 raca, 
                 tamanho, 
                 nome, 
-                tipo
+                tipo, 
+                imagem, 
+                usuario_id
         });
         return res.status(204).send();
     },
