@@ -96,7 +96,7 @@ export default function Pet() {
                     actions={[
                         {
                         icon: FaPen,
-                        tooltip: 'Editar Usuário',
+                        tooltip: 'Editar Pet',
                         onClick: (event, rowData) => history.push(`/EditarPet/${rowData.id}`)
                         },
                         {
