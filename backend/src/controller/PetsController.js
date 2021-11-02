@@ -18,8 +18,12 @@ module.exports = {
     },
     
     async list(req, res){
-        const pets = await connection('pets').select('*');
-        res.json(pets);
+        const {id} = req.params;
+        const pets = await connection('pets')
+        .where('id', id)
+        .select('*');
+
+        return res.json(pets);
     },
 
     async show(req, res) {

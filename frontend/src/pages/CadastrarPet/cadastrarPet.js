@@ -23,7 +23,7 @@ export default function CadastrarPet() {
     function onSubmit(ev) {
         ev.preventDefault();
         api.post('/pets', pet).then((response) => {
-            history.push('/Home')
+            history.push('/Pet')
         })
     }
 
@@ -64,7 +64,7 @@ export default function CadastrarPet() {
             
                 <div id="image">
                     <label>Imagem</label>
-                    <img class="imagephoto" src="../img/image.png" alt=""></img>
+                    <img className="imagephoto" src="../img/image.png" alt=""></img>
                 </div>
             </div>
         </div>

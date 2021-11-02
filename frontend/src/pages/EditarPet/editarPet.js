@@ -20,19 +20,19 @@ export default function EditarPet() {
 
     const [pet, setPet] = useState(initPet);
 
-   // useEffect(() => {
-   //     if (id) {
-    //        api.get(`/pets/${id}`).then(response => {
-    //            console.log(response.data)
-   //             setPet(...response.data)
-   //         })
-   //     }
-   // }, [id]);
+   useEffect(() => {
+       if (id) {
+           api.get(`/pets/profile/${id}`).then(response => {
+               console.log(response.data)
+               setPet(...response.data)
+           })
+       }
+   }, []);
     
     function onSubmit(ev) {
         ev.preventDefault();
         api.put(`/pets/${id}`, pet).then((response)=>{
-            history.push('/Home')
+            history.push('/Pet')
         })
     }
 
