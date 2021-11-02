@@ -11,6 +11,14 @@ body  {
     display: inline-block;
 }
 
+#main-editarPet icon{
+    padding: 5px;
+    display: inline;
+  
+}
+
 #main-editarPet .inputtext {
     margin-bottom: 20px;
+    
     }
+

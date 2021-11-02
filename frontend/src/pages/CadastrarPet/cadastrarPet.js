@@ -1,6 +1,7 @@
 import './cadastrarPet.css';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { FaSave, FaEraser } from 'react-icons/fa';
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import api from '../../services/api'
@@ -42,8 +43,9 @@ export default function CadastrarPet() {
             <Menu />
             <div id="main-cadastrarPet">
                 <h2>Cadastrar Pet</h2>
-                
                 <form onSubmit={onSubmit}>
+                    <label>Imagem:</label><br/>
+                    <input className="inputfile" type="file" name="imagem" onChange={onChange} value={pet.imagem}/><br/><br/>
                     <label>Proprietário*</label>
                     <input class="inputtext" type="char" name="usuario_id" id="usuario_id" onChange={onChange} value={pet.usuario_id} />
                     <label>Nome*</label>
@@ -54,17 +56,12 @@ export default function CadastrarPet() {
                     <input class="inputtext" type="char" name="tipo" id="tipo" onChange={onChange} value={pet.tipo} />
                     <label>Tamanho*</label>
                     <input class="inputtext" type="char" name="tamanho" id="tamanho" onChange={onChange} value={pet.tamanho} />
-                    <input className="confirm-button" type='submit' value="Salvar" />
+                    <button className="confirm-button" type='submit'><icon><FaSave/></icon>Salvar</button>
                 </form>
                 <div className="actions">
                     <button className="confirm-button" onClick={limpar}>
-                        Limpar
+                        <icon><FaEraser/></icon>Limpar
                     </button>
-                </div>
-            
-                <div id="image">
-                    <label>Imagem</label>
-                    <img className="imagephoto" src="../img/image.png" alt=""></img>
                 </div>
             </div>
         </div>

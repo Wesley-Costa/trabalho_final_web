@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import './configuracoes.css';
+import { FaSave, FaEraser } from 'react-icons/fa';
 import api from '../../services/api'
 
 export default function Configuracoes() {
@@ -55,12 +56,11 @@ export default function Configuracoes() {
                     <input className="inputtext" type="integer" name="vagas" id="vagas" onChange={onChange} value={config.vagas} />
                     <br />
                     <button className="confirm-button" type='submit' >
-                        Salvar
-                    </button>
+                        <icon><FaSave/></icon>Salvar</button>
                 </form>
                 <div className="actions">
                     <button className="button" onClick={limpar}>
-                        Limpar
+                    <icon><FaEraser/></icon>Limpar
                     </button>
                 </div>
             </div >

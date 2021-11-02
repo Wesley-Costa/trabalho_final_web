@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import './pet.css';
-import { FaPen, FaPlus, FaSearch } from 'react-icons/fa';
+import { FaPen, FaPlus, FaSearch, FaEraser, FaEye } from 'react-icons/fa';
 import MaterialTable from '@material-table/core';
 import { localizationBR } from '../../components/localization';
 import api from '../../services/api'
@@ -60,12 +60,12 @@ export default function Pet() {
                     <input class="inputtext" type="char" name="tamanho" id="tamanho" onChange={onChange} value={pet.tamanho} />
                     <br/>
                     <button class="confirm-button" type='submit'>
-                        Pesquisar
+                        <icon><FaSearch/></icon>Pesquisar
                     </button>
                 </form>
                 <div className="actions">
                     <button className="confirm-button" onClick={limpar}>
-                        Limpar
+                        <icon><FaEraser/></icon>Limpar
                     </button>
                 </div>
             </div>
@@ -100,7 +100,7 @@ export default function Pet() {
                         onClick: (event, rowData) => history.push(`/EditarPet/${rowData.id}`)
                         },
                         {
-                        icon: FaSearch,
+                        icon: FaEye,
                         tooltip: 'Visualizar',
                         onClick: (event, rowData) => history.push(`/VisualizarPet/${rowData.id}`)
                         },

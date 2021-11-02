@@ -1,0 +1,51 @@
+body  {  		
+	background: #CCF2FF;  
+	}
+
+#main-fazerReserva{
+    padding-top: 40px;
+    width: 580px;
+    padding-left: 10px;
+    font: 500 20px Nunito, sans-serif;
+    color: rgb(10, 41, 82);
+    display: inline-block;
+    background: #CCF2FF;
+}
+
+#main-fazerReserva icon{
+    padding: 5px;
+    display: inline;
+    
+}
+
+#main-fazerReserva .inputtext {
+    width: 240px;
+    height: 35px;
+    }
+
+#main-fazerReserva .inputDate {
+    width: 120px;
+    height: 35px;
+    }
+
+#main-fazerReserva .inputnote {
+    width: 400px;
+    height: 100px;
+    margin-bottom: 10px;
+    background:#F5F8FA;;
+    border: 1px solid rgb(199, 195, 195);
+    display: flex;
+    border-radius: 10px; 
+    }
+
+#main-fazerReserva .inputvalue {
+    width: 100px;
+    height: 35px;
+    padding-left: 80px;
+    background: #CCF2FF;
+    border: 1px solid  #CCF2FF;;
+    outline: none;
+    display: flex;
+    border-radius: 10px;
+    border: 1px solid rgb(199, 195, 195);
+    }

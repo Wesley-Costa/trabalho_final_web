@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import './usuario.css';
-import { FaCheck, FaPen, FaUserMinus, FaSearch, FaUserPlus } from 'react-icons/fa';
+import { FaCheck, FaPen, FaUserMinus, FaSearch, FaUserPlus, FaEraser, FaEye } from 'react-icons/fa';
 import MaterialTable from '@material-table/core';
 import { localizationBR } from '../../components/localization';
 import api from '../../services/api'
@@ -90,12 +90,12 @@ export default function Usuario() {
                     </select>
                     <br/>
                     <button class="confirm-button" type='submit'>
-                        Pesquisar
+                        <icon><FaSearch/></icon>Pesquisar
                     </button>
                 </form>
                 <div className="actions">
                     <button className="confirm-button" onClick={limpar}>
-                        Limpar
+                        <icon><FaEraser/></icon>Limpar
                     </button>
                 </div>
             </div>
@@ -131,7 +131,7 @@ export default function Usuario() {
                         onClick: (event, rowData) => history.push(`/EditarUsuario/${rowData.id}`)
                         },
                         {
-                        icon: FaSearch,
+                        icon: FaEye,
                         tooltip: 'Visualizar',
                         },
                     ]}

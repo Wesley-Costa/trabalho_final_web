@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import './reserva.css';
-import { FaPen, FaPlus, FaSearch } from 'react-icons/fa';
+import { FaPen, FaPlus, FaSearch, FaEraser, FaEye } from 'react-icons/fa';
 import MaterialTable from '@material-table/core';
 import { localizationBR } from '../../components/localization';
 import api from '../../services/api'
@@ -68,12 +68,12 @@ export default function Reserva() {
                     <input class="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} />
 
                     <button class="confirm-button" type='submit'>
-                        Pesquisar
+                        <icon><FaSearch/></icon>Pesquisar
                     </button>
                 </form>
                 <div className="actions">
                     <button className="confirm-button" onClick={limpar}>
-                        Limpar
+                        <icon><FaEraser/></icon>Limpar
                     </button>
                 </div>
             </div>
@@ -109,7 +109,7 @@ export default function Reserva() {
                         onClick: (event, rowData) => history.push(`/EditarReserva/${rowData.id}`)
                         },
                         {
-                        icon: FaSearch,
+                        icon: FaEye,
                         tooltip: 'Visualizar',
                         onClick: (event, rowData) => history.push(`/VerReserva/${rowData.id}`)
                         },

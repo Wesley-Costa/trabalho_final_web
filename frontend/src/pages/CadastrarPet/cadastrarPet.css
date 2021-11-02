@@ -14,3 +14,9 @@ body  {
 #main-cadastrarPet .inputtext {
     margin-bottom: 20px;
     }
+
+#main-cadastrarPet icon{
+    padding: 5px;
+    display: inline;
+    
+}
