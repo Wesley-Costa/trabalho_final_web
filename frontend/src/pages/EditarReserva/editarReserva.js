@@ -3,16 +3,12 @@ import Menu from '../../components/menu';
 import User from '../../components/user';
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom'
-import moment from 'moment';
 import { FaSave, FaEraser } from 'react-icons/fa';
 import api from '../../services/api'
 
 export default function EditarReserva() {
     
     const {id} = useParams()
-    console.log(id)
-
-    const [data, setData] = useState([]);
     const history = useHistory();
 
     const initReserva = {
@@ -25,6 +21,12 @@ export default function EditarReserva() {
         valor: ''
     }
     const [reserva, setReserva] = useState(initReserva);
+    const initConfig = {
+        valorDiaria: '',
+        vagas: ''
+    }
+    const [config, setConfig] = useState(initConfig);
+    const idConfig = 'bd971c32';
 
     useEffect(() => {
         if (id) {
@@ -37,19 +39,31 @@ export default function EditarReserva() {
     function onSubmit(ev) {
         ev.preventDefault();
         api.put(`/reserva/${id}`, reserva).then((response) => {
-            setData(response.data)
             history.push('/Home')
         })
     }
 
     function onChange(ev) {
+        calcValorDiaria()
         const { name, value } = ev.target;
         setReserva({ ...reserva, [name]: value })
     }
 
     function limpar() {
         setReserva(initReserva)
-        setData([])
+    }
+
+    function calcValorDiaria() {
+        var fim = new Date(document.getElementById("fim").value);
+        var inicio = new Date(document.getElementById("inicio").value);
+        var diff = Math.abs(fim - inicio);
+        var days = diff/(1000 * 3600 * 24)
+
+        api.get(`/configuracao/${idConfig}`).then(response => {
+            setConfig(...response.data)
+        })
+        
+        reserva.valor = parseInt(days) * parseFloat(config.valorDiaria)
     }
 
     return (
@@ -60,14 +74,14 @@ export default function EditarReserva() {
                 <h2>Editar Reserva</h2>
                 <form onSubmit={onSubmit}>
                     <label>Proprietário*</label>
-                    <input class="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.proprietario} />
+                    <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.proprietario} />
                     <label>Pet*</label>
-                    <input class="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} />
+                    <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} />
                     <label>Período*</label><br/>
-                    <input class="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
-                    <input class="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br/><br/>
+                    <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
+                    <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br/><br/>
                     <label>Notas*</label>
-                    <input class="inputnote" type="char" name="notas" id="notas" onChange={onChange} value={reserva.notas} />
+                    <input className="inputnote" type="char" name="notas" id="notas" onChange={onChange} value={reserva.notas} />
                     <label>Status*</label><br/>
                     <select type="char" name="status" id="status" onChange={onChange} value={reserva.status} >
                         <option>Selecione</option>

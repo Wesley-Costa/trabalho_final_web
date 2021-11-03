@@ -8,7 +8,6 @@ import api from '../../services/api'
 
 export default function CriarConta() {
     
-    const [data, setData] = useState([]);
     const history = useHistory();
     var date = new Date();
     var dia = date.getDate();
@@ -32,7 +31,6 @@ export default function CriarConta() {
     function onSubmit(ev) {
         ev.preventDefault();
         api.post('/users', user).then((response) => {
-            setData(response.data)
             history.push('/Usuario')
         })
         console.log(user.dataCadastro)
@@ -45,10 +43,7 @@ export default function CriarConta() {
 
     function limpar() {
         setUser(initUsuario)
-        setData([])
     }
-    
-    
 
     return (
         <div>
@@ -60,13 +55,13 @@ export default function CriarConta() {
                     <label>Imagem:</label><br/>
                     <input className="inputfile" type="file" name="imagem" onChange={onChange} value={user.imagem}/><br/><br/>
                     <label>E-mail*</label>
-                    <input class="inputtext" type="char" name="email" id="email" onChange={onChange} value={user.email} />
+                    <input className="inputtext" type="char" name="email" id="email" onChange={onChange} value={user.email} />
                     <label>Nome*</label>
-                    <input class="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={user.nome} />
+                    <input className="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={user.nome} />
                     <label>Sobrenome*</label>
-                    <input class="inputtext" type="char" name="sobrenome" id="sobrenome" onChange={onChange} value={user.sobrenome} />
+                    <input className="inputtext" type="char" name="sobrenome" id="sobrenome" onChange={onChange} value={user.sobrenome} />
                     <label>Telefone*</label>
-                    <input class="inputtext" type="char" name="telefone" id="telefone" onChange={onChange} value={user.telefone} />
+                    <input className="inputtext" type="char" name="telefone" id="telefone" onChange={onChange} value={user.telefone} />
                     <label>Função*</label><br/>
                     <select type="char" name="funcao" id="funcao" onChange={onChange} value={user.funcao} >
                         <option>Selecione</option>
