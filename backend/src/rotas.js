@@ -5,7 +5,7 @@ const PetsController = require('./controller/PetsController');
 const ReservaController = require('./controller/ReservaController');
 const ConfiguracaoController = require('./controller/ConfiguracaoController');
 
-routes.get('/users', UserController.list);
+routes.get('/users/profile/:id', UserController.list);
 routes.post('/users', UserController.create);
 routes.post('/users/pesquisa', UserController.show);
 routes.put('/users/:id', UserController.update);
@@ -17,7 +17,7 @@ routes.post('/pets/pesquisa', PetsController.show);
 routes.put('/pets/:id', PetsController.update);
 routes.delete('/pets/:id', PetsController.delete);
 
-routes.get('/reserva', ReservaController.list);
+routes.get('/reserva/profile/:id', ReservaController.list);
 routes.post('/reserva', ReservaController.create);
 routes.post('/reserva/pesquisa', ReservaController.show);
 routes.put('/reserva/:id', ReservaController.update);

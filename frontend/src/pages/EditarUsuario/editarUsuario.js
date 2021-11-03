@@ -1,14 +1,15 @@
 import './editarUsuario.css';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom'
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import { FaSave, FaEraser } from 'react-icons/fa';
 import api from '../../services/api'
 
 export default function EditarUsuario() {
-    
-    const [data, setData] = useState([]);
+
+    const {id} = useParams()
+    // const [data, setData] = useState([]);
     const history = useHistory();
     var date = new Date();
 
@@ -26,10 +27,18 @@ export default function EditarUsuario() {
     }
     const [user, setUser] = useState(initUsuario);
 
+    useEffect(() => {
+        if (id) {
+            api.get(`/users/profile/${id}`).then(response => {
+                setUser(...response.data)
+            })
+        }
+    }, []);
+
     function onSubmit(ev) {
         ev.preventDefault();
-        api.post('/users/pesquisa', user).then((response) => {
-            setData(response.data)
+        api.put(`/users/${id}`, user).then((response) => {
+            // setData(response.data)
             history.push('/Usuario')
         })
     }
@@ -41,7 +50,7 @@ export default function EditarUsuario() {
 
     function limpar() {
         setUser(initUsuario)
-        setData([])
+        // setData([])
     }
     
     return (
@@ -51,8 +60,8 @@ export default function EditarUsuario() {
             <div id="main-editUsuario">
                 <h2>Editar Perfil</h2>
                 <form onSubmit={onSubmit}>
-                    <label>Imagem:</label><br/>
-                    <input className="inputfile" type="file" name="imagem" onChange={onChange} value={user.imagem}/><br/><br/>
+                    {/* <label>Imagem:</label><br/>
+                    <input className="inputfile" type="file" name="imagem"/><br/><br/> */}
                     <label>E-mail*</label>
                     <input class="inputtext" type="char" name="email" id="email" onChange={onChange} value={user.email} />
                     <label>Nome*</label>

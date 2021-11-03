@@ -21,8 +21,12 @@ module.exports = {
     },
     
     async list(req, res){
-        const users = await connection('users').select('*');
-        res.json(users);
+        const {id} = req.params;
+        const user = await connection('users')
+        .where('id', id)
+        .select('*');
+
+        return res.json(user);
     },
 
     async show(req, res) {

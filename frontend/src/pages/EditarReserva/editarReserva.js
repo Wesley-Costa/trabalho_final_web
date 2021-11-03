@@ -1,7 +1,7 @@
 import './editarReserva.css';
 import Menu from '../../components/menu';
 import User from '../../components/user';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom'
 import moment from 'moment';
 import { FaSave, FaEraser } from 'react-icons/fa';
@@ -26,9 +26,17 @@ export default function EditarReserva() {
     }
     const [reserva, setReserva] = useState(initReserva);
 
+    useEffect(() => {
+        if (id) {
+            api.get(`/reserva/profile/${id}`).then(response => {
+                setReserva(...response.data)
+            })
+        }
+    }, []);
+
     function onSubmit(ev) {
         ev.preventDefault();
-        api.post('/reserva/pesquisa', reserva).then((response) => {
+        api.put(`/reserva/${id}`, reserva).then((response) => {
             setData(response.data)
             history.push('/Home')
         })
@@ -37,7 +45,6 @@ export default function EditarReserva() {
     function onChange(ev) {
         const { name, value } = ev.target;
         setReserva({ ...reserva, [name]: value })
-        
     }
 
     function limpar() {
@@ -45,7 +52,6 @@ export default function EditarReserva() {
         setData([])
     }
 
-    
     return (
         <div>
             <User />

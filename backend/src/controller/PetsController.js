@@ -14,7 +14,7 @@ module.exports = {
             imagem, 
             usuario_id
         });
-        res.json({id});
+        return res.json({id});
     },
     
     async list(req, res){

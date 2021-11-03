@@ -16,7 +16,7 @@ export default function EditarPet() {
         tamanho: '',
         nome: '',
         tipo: '',
-        imagem: '',
+        imagem: ''
     }
 
     const [pet, setPet] = useState(initPet);
@@ -24,7 +24,6 @@ export default function EditarPet() {
    useEffect(() => {
        if (id) {
            api.get(`/pets/profile/${id}`).then(response => {
-               console.log(response.data)
                setPet(...response.data)
            })
        }
@@ -53,8 +52,8 @@ export default function EditarPet() {
             <div id="main-editarPet">
                 <h2>Editar Pet</h2>
                 <form onSubmit={onSubmit}>
-                    <label>Imagem:</label><br/>
-                    <input className="inputfile" type="file" name="imagem" onChange={onChange} value={pet.imagem}/><br/><br/>
+                    {/* <label>Imagem:</label><br/>
+                    <input className="inputfile" type="file" name="imagem" onChange={onChange} value={pet.imagem}/><br/><br/> */}
                     <label>Nome*</label>
                     <input className="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={pet.nome} />
                     <label>Raça*</label>

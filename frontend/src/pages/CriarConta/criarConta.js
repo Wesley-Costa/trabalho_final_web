@@ -23,7 +23,7 @@ export default function CriarConta() {
         sobrenome: '', 
         telefone: '',  
         funcao: '', 
-        dataCadastro: dia + (mes+1) + ano4, 
+        dataCadastro: dia + '/' + (mes+1) + '/' + ano4, 
         imagem: '', 
         status: 'Ativo'
     }
@@ -35,6 +35,7 @@ export default function CriarConta() {
             setData(response.data)
             history.push('/Usuario')
         })
+        console.log(user.dataCadastro)
     }
 
     function onChange(ev) {
@@ -47,6 +48,8 @@ export default function CriarConta() {
         setData([])
     }
     
+    
+
     return (
         <div>
             <User />
