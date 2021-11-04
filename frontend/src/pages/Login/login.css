@@ -1,5 +1,5 @@
 body  {  		
-	background: #CCF2FF;  
+	background: #d8f2f0;  
 	}
 
 #login-page  {  	
@@ -11,28 +11,27 @@ body  {
     float: left;
     margin: 1em auto; 
     width: 400px;  	
-    background: #CCF2FF; 
+
     }
 
 .login-main  {  	
     float: right;  	
     width: 340px;  
     height: 560px;	
-    background: #CCF2FF; 
+
     }
 
 h1 {
     margin: 10px;
     padding-top: 20px;
     padding-left: 40px;
-    color: 	#FF3F00;
+    color: 	#e96151;
     font: 600 40px Nunito, sans-serif;
     display: flex;
     }
 
 fieldsetLogin {
     float: left;
-    background: #CCF2FF;
     width: 340px;
     border: 0px solid rgb(199, 195, 195);
     outline: none;
@@ -93,7 +92,7 @@ p {
     width: 350px;
     height: 60px;
     cursor: pointer;
-    background: #FF6532;
+    background: #e96151;
     border-radius: 20px;
     color: #FFFFFF;
     display: flex;
@@ -103,7 +102,7 @@ p {
     transition: background-color 0.2s;
     }
 
-form.login-form .button-Login:hover {
+.button-Login:hover {
     background: #FFFFFF;
-    color: #FF6532;
+    color: #e96151;
 }

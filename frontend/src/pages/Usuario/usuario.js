@@ -69,11 +69,9 @@ export default function Usuario() {
                     <input class="inputtext" type="char" name="id" id="id" onChange={onChange} value={user.id} />
                     <input class="inputdate" type="date" name="dataCadastro" id="dataCadastro" onChange={onChange} value={user.dataCadastro} />
                     <br/>
-                    <br/>
                     <label>Nome:</label><label3>E-mail:</label3>
                     <input class="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={user.nome} />
                     <input class="inputtext" type="char" name="email" id="email" onChange={onChange} value={user.email} />
-                    <br/>
                     <br/>
                     <label>Status:</label><label4>Função:</label4>
                     <br/>
@@ -116,8 +114,8 @@ export default function Usuario() {
                         toolbar:false,
                         paginationPosition: false,
                         headerStyle: {
-                        backgroundColor: '#ACDBEB',
-                        color: 'rgb(10, 41, 82)',
+                        backgroundColor: '#194759',
+                        color: '#FFFF',
                         },
                         
                         columnsButton: true,

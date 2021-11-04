@@ -8,7 +8,9 @@ export default function Menu(){
     return(
         <menu id="main-menu">
             <aside>
+                <div id = "title">
                 <h1><icon><FaPaw /></icon> Hotel Pet</h1>
+                </div>
                 <Link to="/Pet" className="menu-button" >
                     <icon><FaDog/></icon>Pet
                 </Link>          

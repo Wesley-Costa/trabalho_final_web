@@ -52,13 +52,11 @@ export default function Reserva() {
                 </Link>
                 <br />
                 <br />
-                <br />
                 <label>Id:</label><label1>Período:</label1>
                 <form onSubmit={onSubmit}>
                     <input class="inputtext" type="char" name="id" id="id" onChange={onChange} value={reserva.id} />
                     <input class="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
                     <input class="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} />
-
                     <label>Proprietário:</label><label3>Total R$</label3>
                     <input class="inputtext" type="char" name="proprietario" id="proprietario" onChange={onChange} value={reserva.proprietario} />
                     <input class="inputtext" type="value" name="valor" id="valor" onChange={onChange} value={reserva.valor} />
@@ -66,7 +64,6 @@ export default function Reserva() {
                     <label>Status:</label><label2>Pet:</label2>
                     <input class="inputtext" type="datalis" name="status" id="status" onChange={onChange} value={reserva.status} />
                     <input class="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} />
-
                     <button class="confirm-button" type='submit'>
                         <icon><FaSearch/></icon>Pesquisar
                     </button>
@@ -94,8 +91,8 @@ export default function Reserva() {
                         toolbar:false,
                         paginationPosition: false,
                         headerStyle: {
-                        backgroundColor: '#ACDBEB',
-                        color: 'rgb(10, 41, 82)',
+                        backgroundColor: '#194759',
+                        color: '#FFFF',
                         },
                         
                         columnsButton: true,

@@ -1,22 +1,25 @@
 menu#main-menu{
-    background: #CCF2FF;
+    background: #d8f2f0;
     }
-
     
+#title{
+    border-bottom: 1px solid rgb(199, 195, 195);
+}
+
 h1 {
-    padding-top: 40px;
+    padding-top: 30px;
     padding-left: 0px;
-    color: 	#FF3F00;
-    font: 600 40px Nunito, sans-serif;
+    color: 	#e96151;
+    font: 400 40px Nunito, sans-serif;
     }
 
 aside{
     float: left;
     width: 270px;
-    height: 500px;
+    height: 450px;
     margin-right: 20px;
     padding-bottom: 250px;
-    background: #CCF2FF;
+    background: #194759;
     border-right: 1px solid rgb(199, 195, 195);
     }
 
@@ -25,19 +28,19 @@ aside{
     text-decoration: none;
     margin: 5px;
     float: left;
-    width: 200px;
+    width: 250px;
     height: 50px;
     cursor: pointer;
-    background: #CCF2FF;
-    color: rgb(10, 41, 82);
+    background: #194759;
+    color: #FFFF;
     display: flex;
     justify-content: left;
     align-items: center;
-    font: 600 18px Nunito, sans-serif;
+    font: 350 18px Nunito, sans-serif;
 }
 
 .menu-button:hover{
-    background: linear-gradient(135deg, #cce2ff 20%, #CCF2FF 100%);
+    background: linear-gradient(135deg, #296b73 10%, #194759 100%);
 }
 
 icon {

@@ -50,7 +50,6 @@ export default function Pet() {
                 </Link>
                 <br />
                 <br />
-                <br />
                 <label>Id:</label><label1>Raça:</label1>
                 <form onSubmit={onSubmit}>
                     <input class="inputtext" type="char" name="id" id="id" onChange={onChange} value={pet.id} />
@@ -85,8 +84,8 @@ export default function Pet() {
                         toolbar:false,
                         paginationPosition: false,
                         headerStyle: {
-                        backgroundColor: '#ACDBEB',
-                        color: 'rgb(10, 41, 82)',
+                        backgroundColor: '#194759',
+                        color: '#FFFF',
                         },
                         
                         columnsButton: true,

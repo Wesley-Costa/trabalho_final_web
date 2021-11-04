@@ -1,15 +1,11 @@
-body  {  		
-	background: #CCF2FF;  
-	}
 
 #main-pet{
-    padding-top: 40px;
+    padding-top: 0px;
     width: 580px;
     padding-left: 10px;
     font: 500 20px Nunito, sans-serif;
     color: rgb(10, 41, 82);
     display: inline-block;
-    background: #CCF2FF;
 }
 
 .new-button{
@@ -95,7 +91,7 @@ body  {
 }
 
 #main-pet .confirm-button:hover {
-    background: rgb(74, 142, 231);
+    background: #194759;
     color: #ffff;
 }
 
