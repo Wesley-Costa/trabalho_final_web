@@ -10,8 +10,7 @@ user{
     height: 40px;
     text-decoration: none;
     margin: 5px;
-    padding-right: 100px;
-    border-radius: 20px;
+    padding-right: 50px;
     background: #d8f2f0;
     color: rgb(10, 41, 82);
     float: left;
@@ -22,10 +21,22 @@ user{
     transition: background-color 0.2s;
     }
 
-icon {
-    width: 20px;
-    height: 20px;
+.user-logout{
+    margin: 5px;
+    color: rgb(10, 41, 82);
+    float: center;
     display: flex;
-    padding-right: 20px;
-    padding-left: 20px;
+    justify-content: center;
+    align-items: center;
+    font: 300 14px Nunito, sans-serif;
+    border: 0px;
+    background: #d8f2f0;
+    }
+
+user icon {
+    width: 10px;
+    height: 15px;
+    display: flex;
+    padding-right: 10px;
+    padding-left: 10px;
 }

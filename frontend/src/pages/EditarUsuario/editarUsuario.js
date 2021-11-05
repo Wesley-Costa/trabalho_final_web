@@ -28,7 +28,7 @@ export default function EditarUsuario() {
 
     useEffect(() => {
         if (id) {
-            api.get(`/users/profile/${id}`).then(response => {
+            api.get(`/users/${id}`).then(response => {
                 setUser(...response.data)
             })
         }

@@ -1,40 +1,40 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Context } from '../../context/authContext';
+import { Link , useHistory} from 'react-router-dom';
 import { FaPaw } from 'react-icons/fa';
-//import api from "../../services/api";
 import './login.css';
+import api from '../../services/api';
 import logoImg from '../../img/pet.jpg';
 import googleImg from '../../img/google.png';
 import facebookImg from '../../img/facebook.png';
 import twitterImg from '../../img/twitter.png';
 
 export default function Login() {
-
-    function initUser() {
-        return {
-            email: '',
-            senha: ''
+    const history =  useHistory();
+    const { handleLogin } = useContext(Context);
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    
+    async function login(e){
+        e.preventDefault();
+        const dados = {email, senha};
+        
+        //api.post(`/users/authenticate`, dados).then(response => {
+        //    console.log(response.data);
+        //})
+        
+        const response = api.post(`/users/authenticate`, dados)
+        console.log(response.data);
+        if (response.status === 200) {
+            localStorage.setItem("nome", response.data.nome);
+            localStorage.setItem("id", response.data.id);
+            localStorage.setItem("funcao", response.data.funcao);
+            handleLogin();
+        }else{
+            alert("Usuário não encontrado!");
         }
     }
 
-    const [user, setUser] = useState(initUser);
-    const history = useHistory();
-
-    function onChange(event) {
-        const { value, name } = event.target;
-
-        setUser({
-            ...user,
-            [name]: value
-        });
-    }
-
-    async function login(e) {
-        e.preventDefault();
-        history.push("/Home");
-            
-    }
-    
     return (
         <div id='login-page'>
             <div className="logo">
@@ -42,15 +42,15 @@ export default function Login() {
             </div>
             <div className="login-main">
                 <h1><icon><FaPaw /></icon> Hotel Pet</h1>
-                <form className='login-form' onSubmit={login}>
+                <form className='login-form'>
                     <fieldsetLogin>
                         <label>Login</label>
-                        <input className='inputtextLogin' id='email' name='email' onChange={onChange} autoComplete='email' maxLength={255} value={user.email} />
+                        <input className='inputtextLogin' id='email' name='email' autoComplete='email' maxLength={255}  value={email} onChange={e => setEmail(e.target.value)} required />
                     </fieldsetLogin>
                     <br/>
                     <fieldsetLogin>    
                         <label>Senha</label>
-                        <input className='inputtextLogin' id='senha' name='senha' type='password' onChange={onChange} autoComplete='current-senha' minLength={8} maxLength={255} value={user.senha} />
+                        <input className='inputtextLogin' id='senha' name='senha' type='password' autoComplete='current-senha' minLength={8} maxLength={255} value={senha} onChange={e => setSenha(e.target.value)} required />
                     </fieldsetLogin>
                 </form>
                 <p><input type="checkbox" /> mantenha-me conectado</p>
@@ -60,7 +60,7 @@ export default function Login() {
                 <p><img className="imagefloat" src={facebookImg} alt="" /></p>
                 <p><img className="imagefloat" src={twitterImg} alt="" /></p>
                 
-                <button className="button-Login" type='submit' onSubmit={login}>
+                <button className="button-Login" type='button' onClick={login}>
                     Enviar
                 </button>
                 
