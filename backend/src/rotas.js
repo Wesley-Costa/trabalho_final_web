@@ -4,15 +4,17 @@ const UserController = require('./controller/UserController');
 const PetsController = require('./controller/PetsController');
 const ReservaController = require('./controller/ReservaController');
 const ConfiguracaoController = require('./controller/ConfiguracaoController');
+const multer = require('./config/multer');
 
 routes.get('/users/profile/:id', UserController.list);
-routes.post('/users', UserController.create);
+routes.post('/users',  multer.single('image'), UserController.create);
 routes.post('/users/pesquisa', UserController.show);
+routes.post('/users/auth', UserController.auth);
 routes.put('/users/:id', UserController.update);
 routes.delete('/users/:id', UserController.delete);
 
 routes.get('/pets/profile/:id', PetsController.list);
-routes.post('/pets', PetsController.create);
+routes.post('/pets', multer.single('image'), PetsController.create);
 routes.post('/pets/pesquisa', PetsController.show);
 routes.put('/pets/:id', PetsController.update);
 routes.delete('/pets/:id', PetsController.delete);

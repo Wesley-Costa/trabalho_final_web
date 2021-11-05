@@ -18,7 +18,7 @@ export default function useAuth() {
   }, []);
   
   async function handleLogin() {
-    const { data: { token } } = await api.post('/users/authenticate');
+    const { data: { token } } = await api.post('/users/auth');
     localStorage.setItem('token', JSON.stringify(token));
     api.defaults.headers.Authorization = `Bearer ${token}`;
     console.log(token)

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Context } from '../../context/authContext';
-import { Link , useHistory} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaPaw } from 'react-icons/fa';
 import './login.css';
 import api from '../../services/api';
@@ -10,25 +10,23 @@ import facebookImg from '../../img/facebook.png';
 import twitterImg from '../../img/twitter.png';
 
 export default function Login() {
-    const history =  useHistory();
     const { handleLogin } = useContext(Context);
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [resp, setResp] = useState('')
     
     async function login(e){
         e.preventDefault();
         const dados = {email, senha};
         
-        //api.post(`/users/authenticate`, dados).then(response => {
-        //    console.log(response.data);
-        //})
-        
-        const response = api.post(`/users/authenticate`, dados)
-        console.log(response.data);
-        if (response.status === 200) {
-            localStorage.setItem("nome", response.data.nome);
-            localStorage.setItem("id", response.data.id);
-            localStorage.setItem("funcao", response.data.funcao);
+        api.post('/users/auth', dados).then(response => {
+            setResp(response.data);
+        })
+
+        if (resp) {
+            localStorage.setItem("nome", resp[0].nome);
+            localStorage.setItem("id", resp[0].id);
+            localStorage.setItem("funcao", resp[0].funcao);
             handleLogin();
         }else{
             alert("Usuário não encontrado!");

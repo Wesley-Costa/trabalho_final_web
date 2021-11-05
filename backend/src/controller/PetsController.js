@@ -4,14 +4,15 @@ const connection = require('../database/connection')
 module.exports = {
     async create(req, res){
         const id = crypto.randomBytes(4).toString('hex')
-        const {raca, tamanho, nome, tipo, imagem, usuario_id} = req.body
+        const {raca, tamanho, nome, tipo, usuario_id} = req.body
+        
         await connection('pets').insert({
             id,
             raca, 
             tamanho, 
             nome, 
             tipo, 
-            imagem, 
+            imagem: req.file.path, 
             usuario_id
         });
         return res.json({id});
