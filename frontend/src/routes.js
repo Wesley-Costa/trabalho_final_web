@@ -9,6 +9,7 @@ import VerReserva from './pages/VerReserva/verReserva'
 import Usuario from './pages/Usuario/usuario';
 import EditarUsuario from './pages/EditarUsuario/editarUsuario';
 import CriarConta from './pages/CriarConta/criarConta'
+import CriarPerfil from './pages/CriarPerfil/criarPerfil';
 import Pet from './pages/Pet/pet';
 import CadastrarPet from './pages/CadastrarPet/cadastrarPet'
 import EditarPet from './pages/EditarPet/editarPet'
@@ -33,6 +34,7 @@ export default function Routes() {
     return (
         <Switch>
             <CustomRoute exact path='/' component={Login} />
+            <CustomRoute exact path='/CriarConta' component={CriarConta} />
             <CustomRoute isPrivate path='/Home' component={Reserva} />
             <CustomRoute isPrivate path='/Reserva' component={Reserva} />
             <CustomRoute isPrivate path='/FazerReserva' component={FazerReserva} /> 
@@ -40,7 +42,7 @@ export default function Routes() {
             <CustomRoute isPrivate path='/VerReserva/:id' component={VerReserva} />
             <CustomRoute isPrivate path='/Usuario' component={Usuario} />
             <CustomRoute isPrivate path='/EditarUsuario/:id' component={EditarUsuario} />
-            <CustomRoute isPrivate path='/CriarConta' component={CriarConta} />
+            <CustomRoute isPrivate path='/CriarPerfil' component={CriarPerfil} />
             <CustomRoute isPrivate path='/Configuracoes' component={Configuracoes} />
             <CustomRoute isPrivate path='/Pet' component={Pet} />
             <CustomRoute isPrivate path='/CadastrarPet' component={CadastrarPet} />

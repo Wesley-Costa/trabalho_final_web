@@ -9,7 +9,7 @@ export default function useAuth() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    //console.log(token);
+
     if (token) {
       api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
       setAuthenticated(true);
@@ -22,7 +22,6 @@ export default function useAuth() {
     const token  = crypto.randomBytes(4).toString('hex');
     localStorage.setItem('token', JSON.stringify(token));
     api.defaults.headers.Authorization = `Bearer ${token}`;
-    console.log(token)
     setAuthenticated(true);
     history.push('/Home');
   }

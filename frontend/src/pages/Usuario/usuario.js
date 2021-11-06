@@ -51,7 +51,7 @@ export default function Usuario() {
             <Menu />
             <div id="main-usuario">
                 <h2>Usuários</h2>
-                <Link to="/CriarConta"  className="new-button" >
+                <Link to="/CriarPerfil"  className="new-button" >
                     <icon><FaUserPlus /></icon>Novo
                 </Link>
                 <button class="new-button" type='submit'> <icon><FaUserMinus /></icon> Remover</button>

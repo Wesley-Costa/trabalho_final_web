@@ -1,0 +1,29 @@
+
+#main-criarPerfil{
+    padding-top: 0px;
+    width: 580px;
+    padding-left: 10px;
+    font: 500 20px Nunito, sans-serif;
+    color: rgb(10, 41, 82);
+    display: inline-block;
+}
+
+#main-criarPerfil icon{
+    padding: 5px;
+    display: inline;
+    
+}
+
+#main-criarPerfil select{
+    width: 235px;
+    height: 40px;
+    padding-left: 10px;
+    border: 1px solid rgb(199, 195, 195);
+    outline: none;
+    display: flex;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    float: left;
+    background: #F5F8FA;
+}

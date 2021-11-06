@@ -1,13 +1,12 @@
 import './criarConta.css';
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'
-import Menu from '../../components/menu';
-import User from '../../components/user';
-import { FaSave, FaEraser } from 'react-icons/fa';
+import { useHistory } from 'react-router-dom';
+import { FaPaw } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import logoImg from '../../img/pet.jpg';
 import api from '../../services/api'
 
 export default function CriarConta() {
-    
     const history = useHistory();
     var date = new Date();
     var dia = date.getDate();
@@ -41,40 +40,28 @@ export default function CriarConta() {
         setUser({ ...user, [name]: value })
     }
 
-    function limpar() {
-        setUser(initUsuario)
-    }
-
     return (
         <div>
-            <User />
-            <Menu />
-            <div id="main-criarConta">
-                <h2>Criar Perfil</h2>
-                <form onSubmit={onSubmit}>
-                    <label>Imagem:</label><br/>
-                    <input className="inputfile" type="file" name="imagem" onChange={onChange} value={user.imagem}/><br/><br/>
-                    <label>E-mail*</label>
-                    <input className="inputtext" type="char" name="email" id="email" onChange={onChange} value={user.email} />
-                    <label>Nome*</label>
-                    <input className="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={user.nome} />
-                    <label>Sobrenome*</label>
-                    <input className="inputtext" type="char" name="sobrenome" id="sobrenome" onChange={onChange} value={user.sobrenome} />
-                    <label>Telefone*</label>
-                    <input className="inputtext" type="char" name="telefone" id="telefone" onChange={onChange} value={user.telefone} />
-                    <label>Função*</label><br/>
-                    <select type="char" name="funcao" id="funcao" onChange={onChange} value={user.funcao} >
-                        <option>Selecione</option>
-                        <option>Gerente</option>
-                        <option>Funcionário</option>
-                        <option>Cliente</option>
-                    </select><br/><br/><br/>
-                    <button className="confirm-button" type='submit'><icon><FaSave/></icon>Salvar</button>
-                </form>
-                <div className="actions">
-                    <button className="confirm-button" onClick={limpar}>
-                        <icon><FaEraser/></icon>Limpar
-                    </button>
+            <div id='register-page'>
+                <div className="logo">
+                    <p><img src={logoImg} alt="" /></p>
+                </div>
+                <div className="register-main">
+                    <h1><icon><FaPaw /></icon> Hotel Pet</h1>
+                    <form className='register-form' onSubmit={onSubmit}>
+                        <fieldsetLogin>
+                            <label>Login</label><br/>
+                            <input className='inputtextLogin' id='email' name='email' autoComplete='email' onChange={onChange} value={user.email} required /><br/>   
+                            <label>Senha</label><br/>
+                            <input className='inputtextLogin' id='senha' name='senha' type='senha' autoComplete='senha' minLength={8} onChange={onChange} value={user.senha} required /><br/><br/>
+                        </fieldsetLogin>
+                        <button className="button-Register" type='submit'>
+                            Criar Conta
+                        </button>
+                    </form>
+                    <Link to="/" className="register">
+                        Já tem uma conta? Login
+                    </Link>
                 </div>
             </div>
         </div>
