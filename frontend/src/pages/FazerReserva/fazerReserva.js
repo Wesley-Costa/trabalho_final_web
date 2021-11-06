@@ -9,6 +9,7 @@ import './fazerReserva.css';
 export default function FazerReserva() {
 
     const history = useHistory();
+    const [data, setData] = useState('');
 
     const initReserva = {
         id: '',
@@ -58,31 +59,73 @@ export default function FazerReserva() {
         
         reserva.valor = parseInt(days) * parseFloat(config.valorDiaria)
     }
-
-    return (
-        <div>
-            <User />
-            <Menu />
-            <div id="main-fazerReserva">
-                <h2>Fazer Reserva</h2>
-                <form onSubmit={onSubmit}>
-                    <label>Pet*</label>
-                    <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} /><br />
-                    <label>Período*</label><br />
-                    <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
-                    <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br /><br />
-                    <label>Notas*</label>
-                    <input className="inputnote" type="char" name="notas" id="notas" onChange={onChange} value={reserva.notas} /><br />
-                    <label>Total das diárias*: R$ {reserva.valor}</label>
-                    <br /><br /><br />
-                    <button className="confirm-button" type='submit'><icon><FaSave /></icon>Salvar</button>
-                </form>
-                <div className="actions">
-                    <button className="confirm-button" onClick={limpar}>
-                        <icon><FaEraser /></icon>Limpar
-                    </button>
+    if(localStorage.getItem('funcao') === 'cliente'){
+        return (
+            <div>
+                <User />
+                <Menu />
+                <div id="main-fazerReserva">
+                    <h2>Fazer Reserva</h2>
+                    <form onSubmit={onSubmit}>
+                        <label>Proprietário*</label>
+                        <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} /><br />
+                        <label>Pet*</label>
+                        <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} /><br />
+                        <label>Período*</label><br />
+                        <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
+                        <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br /><br />
+                        <label>Notas*</label>
+                        <input className="inputnote" type="char" name="notas" id="notas" onChange={onChange} value={reserva.notas} /><br />
+                        <label>Total das diárias*: R$ {reserva.valor}</label>
+                        <br /><br /><br />
+                        <button className="confirm-button" type='submit'><icon><FaSave /></icon>Salvar</button>
+                    </form>
+                    <div className="actions">
+                        <button className="confirm-button" onClick={limpar}>
+                            <icon><FaEraser /></icon>Limpar
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }
+    else{
+        
+        const nome = localStorage.getItem('nome');
+        const UserId = localStorage.getItem('id');
+        api.post('/pets/pesquisa', UserId).then(response=>{
+            setData(response.data);
+            console.log(data)
+        })
+        const pet = data.pet;
+
+        return (
+            <div>
+                <User />
+                <Menu />
+                <div id="main-fazerReserva">
+                    <h2>Fazer Reserva</h2>
+                    <form onSubmit={onSubmit}>
+                        <label>Proprietário*</label>
+                        <input className="inputtext" type="char" name="proprietario" id="proprietario" onChange={onChange} value={nome} /><br />
+                        <label>Pet*</label>
+                        <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={pet} /><br />
+                        <label>Período*</label><br />
+                        <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
+                        <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br /><br />
+                        <label>Notas*</label>
+                        <input className="inputnote" type="char" name="notas" id="notas" onChange={onChange} value={reserva.notas} /><br />
+                        <label>Total das diárias*: R$ {reserva.valor}</label>
+                        <br /><br /><br />
+                        <button className="confirm-button" type='submit'><icon><FaSave /></icon>Salvar</button>
+                    </form>
+                    <div className="actions">
+                        <button className="confirm-button" onClick={limpar}>
+                            <icon><FaEraser /></icon>Limpar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }

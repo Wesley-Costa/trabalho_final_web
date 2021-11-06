@@ -5,10 +5,11 @@ import history from '../../history';
 export default function useAuth() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+  const crypto = require('crypto')
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token);
+    //console.log(token);
     if (token) {
       api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
       setAuthenticated(true);
@@ -18,7 +19,7 @@ export default function useAuth() {
   }, []);
   
   async function handleLogin() {
-    const { data: { token } } = await api.post('/users/auth');
+    const token  = crypto.randomBytes(4).toString('hex');
     localStorage.setItem('token', JSON.stringify(token));
     api.defaults.headers.Authorization = `Bearer ${token}`;
     console.log(token)
@@ -29,6 +30,9 @@ export default function useAuth() {
   function handleLogout() {
     setAuthenticated(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    localStorage.removeItem('funcao');
+    localStorage.removeItem('nome');
     api.defaults.headers.Authorization = undefined;
     history.push('/');
   }

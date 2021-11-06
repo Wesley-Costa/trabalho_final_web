@@ -28,12 +28,13 @@ module.exports = {
     },
 
     async show(req, res) {
-        const {id, raca, tamanho, nome} = req.body
+        const {id, raca, tamanho, nome, usuario_id} = req.body
         const pet = await connection('pets')
         .where('id', 'like', `%${id || ''}%`)
         .where('raca', 'like', `%${raca || ''}%`)
         .where('tamanho', 'like', `%${tamanho || ''}%`)
         .where('nome', 'like', `%${nome || ''}%`)
+        .where('usuario_id', 'like', `%${usuario_id || ''}%`)
         .select('*');
 
         return res.json(pet);

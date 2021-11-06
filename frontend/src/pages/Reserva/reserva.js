@@ -56,7 +56,7 @@ export default function Reserva() {
                 <form onSubmit={onSubmit}>
                     <input class="inputtext" type="char" name="id" id="id" onChange={onChange} value={reserva.id} />
                     <input class="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
-                    <input class="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} />
+                    <input class="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br/><br/>
                     <label>Proprietário:</label><label3>Total R$</label3>
                     <input class="inputtext" type="char" name="proprietario" id="proprietario" onChange={onChange} value={reserva.proprietario} />
                     <input class="inputtext" type="value" name="valor" id="valor" onChange={onChange} value={reserva.valor} />

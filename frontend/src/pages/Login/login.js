@@ -13,23 +13,35 @@ export default function Login() {
     const { handleLogin } = useContext(Context);
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [resp, setResp] = useState('')
-    
-    async function login(e){
-        e.preventDefault();
-        const dados = {email, senha};
-        
-        api.post('/users/auth', dados).then(response => {
-            setResp(response.data);
-        })
+    const [resp, setResp] = useState('');
 
-        if (resp) {
+    
+    async function request(){
+        const dados = {email, senha};
+        console.log(dados)
+        await api.post('/users/auth', dados).then(response => {
+            setResp(response.data);
+            console.log(response.data)
+            
+        })
+        
+    }
+    
+    function login(e){
+        e.preventDefault();
+        request();
+        console.log('outra rodada')
+        request();
+        if (resp[0] !== undefined) {
             localStorage.setItem("nome", resp[0].nome);
             localStorage.setItem("id", resp[0].id);
             localStorage.setItem("funcao", resp[0].funcao);
             handleLogin();
-        }else{
-            alert("Usuário não encontrado!");
+        }
+        else{
+            //alert('usuário não encontrado')
+            setEmail('');
+            setSenha('');
         }
     }
 

@@ -50,9 +50,10 @@ module.exports = {
     async auth(req, res) {
         const { email, senha } = req.body
         const user = await connection('users')
-        .where('email', 'like', `%${email}%`)
-        .where('senha', 'like', `%${senha}%`)
-        .select('*')
+            .where({
+                email: email,
+                senha: senha
+            }).select('*')
 
         return res.status(200).json(user);
     },
@@ -73,7 +74,7 @@ module.exports = {
                 imagem,
                 status
             });
-        return res.status(204).send();
+        return res.status(200).send();
     },
 
     async delete(req, res) {
