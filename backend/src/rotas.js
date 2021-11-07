@@ -7,7 +7,7 @@ const ConfiguracaoController = require('./controller/ConfiguracaoController');
 const multer = require('./config/multer');
 
 routes.get('/users/profile/:id', UserController.list);
-routes.post('/users',  multer.single('image'), UserController.create);
+routes.post('/users', multer.single('image'), UserController.create);
 routes.post('/users/pesquisa', UserController.show);
 routes.post('/users/auth', UserController.auth);
 routes.put('/users/:id', UserController.update);

@@ -23,12 +23,16 @@ export default function CadastrarPet() {
 
     function onSubmit(ev) {
         ev.preventDefault();
+        
+
         api.post('/pets', pet).then((response) => {
             history.push('/Pet')
         })
     }
 
     function onChange(ev) {
+        console.log(document.getElementById("image"))
+        console.log(pet.imagem)
         const { name, value } = ev.target;
         setPet({ ...pet, [name]: value })
     }

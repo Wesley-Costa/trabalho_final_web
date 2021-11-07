@@ -30,6 +30,7 @@ export default function CriarPerfil() {
 
     function onSubmit(ev) {
         ev.preventDefault();
+        console.log(user.imagem)
         api.post('/users', user).then((response) => {
             history.push('/Usuario')
         })

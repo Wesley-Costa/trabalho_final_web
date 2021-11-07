@@ -18,7 +18,6 @@ module.exports = (multer({
         if (extensaoImg) {
             return cb(null, true);
         }
-
         return cb(null, false);
     },
     onFileUploadComplete: function (file, req, res) {
