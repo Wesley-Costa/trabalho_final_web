@@ -6,16 +6,15 @@ user{
     }
 
 .user-button{
-    width: 50px;
+    width: 250px;
     height: 40px;
     text-decoration: none;
     margin: 5px;
-    padding-right: 50px;
     background: #d8f2f0;
     color: rgb(10, 41, 82);
     float: left;
     display: flex;
-    justify-content: left;
+    justify-content: right;
     align-items: center;
     font: 600 18px Nunito, sans-serif;
     transition: background-color 0.2s;

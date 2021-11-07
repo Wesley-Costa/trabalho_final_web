@@ -27,6 +27,15 @@ module.exports = {
         return res.json(pets);
     },
 
+    async listUser(req, res){
+        const {usuario_id} = req.params;
+        const pets = await connection('pets')
+        .where('usuario_id', usuario_id)
+        .select('*');
+
+        return res.json(pets);
+    },
+
     async show(req, res) {
         const {id, raca, tamanho, nome, usuario_id} = req.body
         const pet = await connection('pets')

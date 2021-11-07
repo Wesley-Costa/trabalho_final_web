@@ -13,21 +13,19 @@ export default function Login() {
     const { handleLogin } = useContext(Context);
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [resp, setResp] = useState([]);
-
-    async function request(){
+    const [resp, setResp] = useState('');
+    
+    async function login(e){
+        e.preventDefault();
         const dados = {email, senha};
         await api.post('/users/auth', dados).then(response => {
             setResp(response.data)
         })
-    }
-    
-    function login(e){
-        e.preventDefault();
-        request();
+       
         if (resp[0] !== undefined) {
-            localStorage.setItem("nome", resp[0].nome);
             localStorage.setItem("id", resp[0].id);
+            localStorage.setItem("nome", resp[0].nome);
+            localStorage.setItem("sobrenome", resp[0].sobrenome);
             localStorage.setItem("funcao", resp[0].funcao);
             handleLogin();
         }

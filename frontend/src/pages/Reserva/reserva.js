@@ -30,7 +30,7 @@ export default function Reserva() {
             setData(response.data)
         })
     }
-
+    
     function onChange(ev) {
         const { name, value } = ev.target;
         setReserva({ ...reserva, [name]: value })

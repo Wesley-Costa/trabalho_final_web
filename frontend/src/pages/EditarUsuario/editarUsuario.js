@@ -13,7 +13,6 @@ export default function EditarUsuario() {
     var date = new Date();
 
     const initUsuario = {
-        id: '',
         email: '', 
         senha: '', 
         nome: '', 

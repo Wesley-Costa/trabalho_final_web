@@ -14,6 +14,7 @@ routes.put('/users/:id', UserController.update);
 routes.delete('/users/:id', UserController.delete);
 
 routes.get('/pets/profile/:id', PetsController.list);
+routes.get('/pets/profile/:userId', PetsController.listUser);
 routes.post('/pets', multer.single('image'), PetsController.create);
 routes.post('/pets/pesquisa', PetsController.show);
 routes.put('/pets/:id', PetsController.update);

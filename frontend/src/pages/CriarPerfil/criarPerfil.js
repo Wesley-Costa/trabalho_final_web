@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import { FaSave, FaEraser } from 'react-icons/fa';
-import api from '../../services/api'
+import api from '../../services/api';
 
 export default function CriarPerfil() {
     

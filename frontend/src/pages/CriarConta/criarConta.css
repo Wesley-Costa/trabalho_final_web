@@ -14,6 +14,16 @@ body  {
 
     }
 
+.inputtextRegister {
+    width: 320px;
+    height: 35px;
+    background: #F5F8FA;
+    border: 1px solid rgb(199, 195, 195);
+    outline: none;
+    display: flex;
+    border-radius: 10px;
+    }
+
 .register-main a{
     display: flex;
     padding-top: 10px;

@@ -14,13 +14,12 @@ export default function CriarConta() {
     var ano4 = date.getFullYear();
 
     const initUsuario = {
-        id: '',
         email: '', 
         senha: '', 
         nome: '', 
         sobrenome: '', 
         telefone: '',  
-        funcao: '', 
+        funcao: 'Cliente', 
         dataCadastro: dia + '/' + (mes+1) + '/' + ano4, 
         imagem: '', 
         status: 'Ativo'
@@ -32,7 +31,6 @@ export default function CriarConta() {
         api.post('/users', user).then((response) => {
             history.push('/Usuario')
         })
-        console.log(user.dataCadastro)
     }
 
     function onChange(ev) {
@@ -50,10 +48,16 @@ export default function CriarConta() {
                     <h1><icon><FaPaw /></icon> Hotel Pet</h1>
                     <form className='register-form' onSubmit={onSubmit}>
                         <fieldsetLogin>
-                            <label>Login</label><br/>
-                            <input className='inputtextLogin' id='email' name='email' autoComplete='email' onChange={onChange} value={user.email} required /><br/>   
+                            <label>Login(email)</label><br/>
+                            <input className='inputtextRegister' id='email' name='email' autoComplete='email' onChange={onChange} value={user.email} required /><br/>   
                             <label>Senha</label><br/>
-                            <input className='inputtextLogin' id='senha' name='senha' type='senha' autoComplete='senha' minLength={8} onChange={onChange} value={user.senha} required /><br/><br/>
+                            <input className='inputtextRegister' id='senha' name='senha' type='senha' autoComplete='senha' minLength={8} onChange={onChange} value={user.senha} required /><br/>
+                            <label>Nome</label><br/>
+                            <input className='inputtextRegister' id='nome' name='nome' type='nome' autoComplete='nome' onChange={onChange} value={user.nome} required /><br/>
+                            <label>Sobrenome</label><br/>
+                            <input className='inputtextRegister' id='sobrenome' name='sobrenome' type='sobrenome' autoComplete='sobrenome' onChange={onChange} value={user.sobrenome} required /><br/>
+                            <label>Telefone</label><br/>
+                            <input className='inputtextRegister' id='telefone' name='telefone' type='telefone' autoComplete='telefone' minLength={11} onChange={onChange} value={user.telefone} required /><br/>
                         </fieldsetLogin>
                         <button className="button-Register" type='submit'>
                             Criar Conta

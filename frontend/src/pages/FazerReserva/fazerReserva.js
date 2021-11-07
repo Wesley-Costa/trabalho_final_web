@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import { FaSave, FaEraser } from 'react-icons/fa';
@@ -10,6 +10,7 @@ export default function FazerReserva() {
 
     const history = useHistory();
     const [data, setData] = useState('');
+    const [pets, setPets] = useState([]);
 
     const initReserva = {
         id: '',
@@ -47,6 +48,14 @@ export default function FazerReserva() {
         setReserva(initReserva);
     }
 
+    async function buscarPet() {
+        const usuario_id = localStorage.getItem('id');
+        await api.get(`/pets/profile/${usuario_id}`).then(response => {
+               setPets(...response.data)
+        })
+       
+    }
+
     function calcValorDiaria() {
         var fim = new Date(document.getElementById("fim").value);
         var inicio = new Date(document.getElementById("inicio").value);
@@ -59,7 +68,12 @@ export default function FazerReserva() {
         
         reserva.valor = parseInt(days) * parseFloat(config.valorDiaria)
     }
-    if(localStorage.getItem('funcao') === 'cliente'){
+
+    if(localStorage.getItem('funcao') === 'Cliente'){
+        
+        buscarPet();   
+        console.log(pets)  
+
         return (
             <div>
                 <User />
@@ -67,15 +81,17 @@ export default function FazerReserva() {
                 <div id="main-fazerReserva">
                     <h2>Fazer Reserva</h2>
                     <form onSubmit={onSubmit}>
-                        <label>Proprietário*</label>
-                        <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} /><br />
                         <label>Pet*</label>
+                        {/*<select multiple={false} value=
+                            {pets.map (pet => (
+                                <li key = {pet.id}>
+                                     <p>{pet.nome}</p>
+                                </li>
+                            ))}/>*/}
                         <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} /><br />
                         <label>Período*</label><br />
                         <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
                         <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br /><br />
-                        <label>Notas*</label>
-                        <input className="inputnote" type="char" name="notas" id="notas" onChange={onChange} value={reserva.notas} /><br />
                         <label>Total das diárias*: R$ {reserva.valor}</label>
                         <br /><br /><br />
                         <button className="confirm-button" type='submit'><icon><FaSave /></icon>Salvar</button>
@@ -89,7 +105,7 @@ export default function FazerReserva() {
             </div>
         )
     }
-    else{
+    else {
         
         const nome = localStorage.getItem('nome');
         const UserId = localStorage.getItem('id');
