@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Menu from '../../components/menu';
 import User from '../../components/user';
-import { FaSave, FaEraser } from 'react-icons/fa';
+import { FaSave, FaEraser, FaSearch } from 'react-icons/fa';
 import api from '../../services/api'
 import './fazerReserva.css';
 
 export default function FazerReserva() {
 
     const history = useHistory();
-    const [data, setData] = useState('');
-    const [pets, setPets] = useState([]);
 
     const initReserva = {
         id: '',
@@ -37,6 +35,25 @@ export default function FazerReserva() {
             history.push('/Home')
         })
     }
+
+    const UserId = localStorage.getItem('id');
+    console.log('UserId')
+    console.log(UserId)
+    const pet = {
+        id: '',
+        raca: '',
+        tamanho: '',
+        nome: '',
+        usuario_id: '',
+    }
+    pet.usuario_id = UserId;
+    const [pets, setPets] = useState([]);
+    
+    useEffect(() => {
+        api.post('/pets/pesquisa', pet).then((response) => {
+            setPets(response.data)
+        })
+    }, []);
     
     function onChange(ev) {
         calcValorDiaria()
@@ -46,14 +63,6 @@ export default function FazerReserva() {
 
     function limpar() {
         setReserva(initReserva);
-    }
-
-    async function buscarPet() {
-        const usuario_id = localStorage.getItem('id');
-        await api.get(`/pets/profile/${usuario_id}`).then(response => {
-               setPets(...response.data)
-        })
-       
     }
 
     function calcValorDiaria() {
@@ -70,9 +79,9 @@ export default function FazerReserva() {
     }
 
     if(localStorage.getItem('funcao') === 'Cliente'){
-        
-        buscarPet();   
-        console.log(pets)  
+
+        const nome = localStorage.getItem('nome');
+        reserva.proprietario = nome; 
 
         return (
             <div>
@@ -81,14 +90,10 @@ export default function FazerReserva() {
                 <div id="main-fazerReserva">
                     <h2>Fazer Reserva</h2>
                     <form onSubmit={onSubmit}>
-                        <label>Pet*</label>
-                        {/*<select multiple={false} value=
-                            {pets.map (pet => (
-                                <li key = {pet.id}>
-                                     <p>{pet.nome}</p>
-                                </li>
-                            ))}/>*/}
-                        <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} /><br />
+                        <label>Pet*</label><br/>
+                        <select className="inputtext" name="pet" id="pet" onChange={onChange} value={reserva.pet}>
+                            {pets.map(pet => (<option key={pet.id}>{pet.nome}</option>))}
+                        </select><br/><br/>
                         <label>Período*</label><br />
                         <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
                         <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br /><br />
@@ -106,15 +111,6 @@ export default function FazerReserva() {
         )
     }
     else {
-        
-        const nome = localStorage.getItem('nome');
-        const UserId = localStorage.getItem('id');
-        api.post('/pets/pesquisa', UserId).then(response=>{
-            setData(response.data);
-            console.log(data)
-        })
-        const pet = data.pet;
-
         return (
             <div>
                 <User />
@@ -122,10 +118,10 @@ export default function FazerReserva() {
                 <div id="main-fazerReserva">
                     <h2>Fazer Reserva</h2>
                     <form onSubmit={onSubmit}>
-                        <label>Proprietário*</label>
-                        <input className="inputtext" type="char" name="proprietario" id="proprietario" onChange={onChange} value={nome} /><br />
-                        <label>Pet*</label>
-                        <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={pet} /><br />
+                        <label>Proprietário*</label><br/>
+                        <input className="inputtext" type="char" name="proprietario" id="proprietario" onChange={onChange} value={reserva.proprietario} /><br />
+                        <label>Pet*</label><br/>
+                        <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} /><br />
                         <label>Período*</label><br />
                         <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
                         <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br /><br />

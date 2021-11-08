@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import Menu from '../../components/menu';
 import User from '../../components/user';
 import api from '../../services/api'
-import { FaEraser, FaSave } from 'react-icons/fa';
+import { FaEraser, FaSave, FaTrash } from 'react-icons/fa';
 
 export default function EditarPet() {
     
@@ -41,6 +41,16 @@ export default function EditarPet() {
         setPet({ ...pet, [name]: value })
     }
 
+    async function handleDelete(id){
+        try{
+            await api.delete(`/pets/${id}`).then((response)=>{
+                history.push('/Pet')
+            })
+        }catch(err){
+            alert('Erro ao deletar!!!');
+        }
+    }
+
     function limpar() {
         setPet(initPet)
     }
@@ -66,6 +76,9 @@ export default function EditarPet() {
                         <icon><FaSave/></icon>Salvar</button>
                 </form>
                 <div className="actions">
+                    <button className="confirm-button" onClick={handleDelete}>
+                        <icon><FaTrash/></icon>Deletar
+                    </button>
                     <button className="confirm-button" onClick={limpar}>
                         <icon><FaEraser/></icon>Limpar
                     </button>
