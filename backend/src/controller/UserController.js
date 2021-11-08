@@ -5,6 +5,7 @@ module.exports = {
     async create(req, res) {
         const id = crypto.randomBytes(4).toString('hex')
         const { email, senha, nome, sobrenome, telefone, funcao, dataCadastro, status } = req.body
+        console.log(req.body)
         const imagemPet = {
             imagem: ''
         }
@@ -13,7 +14,6 @@ module.exports = {
             imagemPet.imagem = req.file.path
         }
         const { imagem } = imagemPet;
-
         console.log(imagem)
 
         await connection('users').insert({

@@ -7,8 +7,13 @@ import User from '../../components/user';
 import api from '../../services/api'
 
 export default function CadastrarPet() {
-    
+
     const history = useHistory();
+    const [image, setImage] = useState('')
+    const [status, setStatus] = useState({
+        type: '',
+        mensagem: ''
+    });
 
     const initPet = {
         id: '',
@@ -16,23 +21,51 @@ export default function CadastrarPet() {
         tamanho: '',
         nome: '',
         tipo: '',
-        usuario_id: '',
-        imagem: '',
+        usuario_id: ''
     }
     const [pet, setPet] = useState(initPet);
 
-    function onSubmit(ev) {
+    async function onSubmit(ev) {
         ev.preventDefault();
-        
+        const formData = new FormData();
+        formData.append('image', image);
+        formData.append('nome', pet.nome);
+        formData.append('raca', pet.raca);
+        formData.append('tamanho', pet.tamanho);
+        formData.append('tipo', pet.tipo);
+        formData.append('usuario_id', pet.usuario_id);
 
-        api.post('/pets', pet).then((response) => {
+        const headers = {
+            'headers': {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        await api.post('/pets', formData, headers).then((response) => {
             history.push('/Pet')
+            console.log(response)
         })
+        // .then((response) => {
+        //     setStatus({
+        //         type: 'success',
+        //         mensagem: response.data.mensagem
+        //     });
+        // }).catch((err) => {
+        //     if (err.response) {
+        //         setStatus({
+        //             type: 'error',
+        //             mensagem: err.response.data.mensagem
+        //         });
+        //     } else {
+        //         setStatus({
+        //             type: 'error',
+        //             mensagem: "Erro: Tente mais tarde!"
+        //         });
+        //     }
+        // });
     }
 
     function onChange(ev) {
-        console.log(document.getElementById("image"))
-        console.log(pet.imagem)
         const { name, value } = ev.target;
         setPet({ ...pet, [name]: value })
     }
@@ -40,7 +73,7 @@ export default function CadastrarPet() {
     function limpar() {
         setPet(initPet)
     }
-    
+
     return (
         <div>
             <User />
@@ -48,8 +81,8 @@ export default function CadastrarPet() {
             <div id="main-cadastrarPet">
                 <h2>Cadastrar Pet</h2>
                 <form onSubmit={onSubmit}>
-                    <label>Imagem:</label><br/>
-                    <input className="inputfile" type="file" name="imagem" onChange={onChange} value={pet.imagem}/><br/><br/>
+                    <label>Imagem:</label><br />
+                    <input className="inputfile" type="file" name="imagem" onChange={e => setImage(e.target.files[0])} /><br /><br />
                     <label>Proprietário*</label>
                     <input class="inputtext" type="char" name="usuario_id" id="usuario_id" onChange={onChange} value={pet.usuario_id} />
                     <label>Nome*</label>
@@ -60,11 +93,11 @@ export default function CadastrarPet() {
                     <input class="inputtext" type="char" name="tipo" id="tipo" onChange={onChange} value={pet.tipo} />
                     <label>Tamanho*</label>
                     <input class="inputtext" type="char" name="tamanho" id="tamanho" onChange={onChange} value={pet.tamanho} />
-                    <button className="confirm-button" type='submit'><icon><FaSave/></icon>Salvar</button>
+                    <button className="confirm-button" type='submit'><icon><FaSave /></icon>Salvar</button>
                 </form>
                 <div className="actions">
                     <button className="confirm-button" onClick={limpar}>
-                        <icon><FaEraser/></icon>Limpar
+                        <icon><FaEraser /></icon>Limpar
                     </button>
                 </div>
             </div>
