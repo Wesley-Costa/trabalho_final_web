@@ -52,7 +52,7 @@ export default function CriarPerfil() {
         }
 
         api.post('/users', formData, headers).then((response) => {
-            // history.push('/Usuario')
+            history.push('/Usuario')
             console.log(response)
         })
         // .then((response) => {
@@ -73,7 +73,6 @@ export default function CriarPerfil() {
         //         });
         //     }
         // });
-
     }
 
     function onChange(ev) {

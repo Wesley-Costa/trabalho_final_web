@@ -31,14 +31,13 @@ export default function FazerReserva() {
 
     function onSubmit(ev) {
         ev.preventDefault();
+        console.log('->', reserva.proprietario)
         api.post('/reserva', reserva).then((response) => {
             history.push('/Home')
         })
     }
 
     const UserId = localStorage.getItem('id');
-    console.log('UserId')
-    console.log(UserId)
     const pet = {
         id: '',
         raca: '',

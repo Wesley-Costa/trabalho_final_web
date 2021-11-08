@@ -8,44 +8,68 @@ import api from '../../services/api'
 
 export default function EditarUsuario() {
 
-    const {id} = useParams()
+    const { id } = useParams()
     const history = useHistory();
     var date = new Date();
+    const [image, setImage] = useState('')
+    const [status, setStatus] = useState({
+        type: '',
+        mensagem: ''
+    });
 
     const initUsuario = {
-        email: '', 
-        senha: '', 
-        nome: '', 
-        sobrenome: '', 
-        telefone: '',  
-        funcao: '', 
-        dataCadastro: date.getDate(), 
-        imagem: '', 
+        email: '',
+        senha: '',
+        nome: '',
+        sobrenome: '',
+        telefone: '',
+        funcao: '',
+        dataCadastro: date.getDate(),
+        imagem: '',
         status: 'Ativo'
     }
     const [user, setUser] = useState(initUsuario);
 
     useEffect(() => {
         if (id) {
-            api.get(`/users/${id}`).then(response => {
+            api.get(`/users/profile/${id}`).then(response => {
                 setUser(...response.data)
             })
         }
     }, []);
 
-    async function handleDelete(id){
-        try{
-            await api.delete(`/users/${id}`).then((response)=>{
+    async function handleDelete(id) {
+        console.log(id)
+        try {
+            
+            await api.delete(`/users/profile/delete/${id}`).then((response) => {
                 history.push('/Usuario')
             })
-        }catch(err){
+        } catch (err) {
             alert('Erro ao deletar!!!');
         }
     }
 
     function onSubmit(ev) {
         ev.preventDefault();
-        api.put(`/users/${id}`, user).then((response) => {
+        const formData = new FormData();
+        formData.append('image', image);
+        formData.append('email', user.email);
+        formData.append('senha', user.senha);
+        formData.append('nome', user.nome);
+        formData.append('sobrenome', user.sobrenome);
+        formData.append('telefone', user.telefone);
+        formData.append('funcao', user.funcao);
+        formData.append('dataCadastro', user.dataCadastro);
+        formData.append('status', user.status);
+
+        const headers = {
+            'headers': {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        api.put(`/users/${id}`, formData, headers).then((response) => {
             history.push('/Usuario')
         })
     }
@@ -58,8 +82,8 @@ export default function EditarUsuario() {
     function limpar() {
         setUser(initUsuario)
     }
-    
-    if(localStorage.getItem('funcao') === 'Gerente'){
+
+    if (localStorage.getItem('funcao') === 'Gerente') {
         return (
             <div>
                 <User />
@@ -67,8 +91,8 @@ export default function EditarUsuario() {
                 <div id="main-editUsuario">
                     <h2>Editar Perfil</h2>
                     <form onSubmit={onSubmit}>
-                        {/* <label>Imagem:</label><br/>
-                        <input className="inputfile" type="file" name="imagem"/><br/><br/> */}
+                        <label>Imagem:</label><br/>
+                        <input className="inputfile" type="file" name="imagem" onChange={e => setImage(e.target.files[0])}/><br/><br/>
                         <label>E-mail*</label>
                         <input className="inputtext" type="char" name="email" id="email" onChange={onChange} value={user.email} />
                         <label>Nome*</label>
@@ -79,28 +103,28 @@ export default function EditarUsuario() {
                         <input className="inputtext" type="char" name="telefone" id="telefone" onChange={onChange} value={user.telefone} />
                         <label>Senha*</label>
                         <input className="inputtext" type="password" name="senha" id="senha" onChange={onChange} value={user.senha} />
-                        <label>Função*</label><br/>
+                        <label>Função*</label><br />
                         <select type="char" name="funcao" id="funcao" onChange={onChange} value={user.funcao} >
                             <option>Selecione</option>
                             <option>Gerente</option>
                             <option>Funcionário</option>
                             <option>Cliente</option>
-                        </select><br/><br/><br/>
-                        <button className="confirm-button" type='submit'><icon><FaSave/></icon>Salvar</button>
+                        </select><br /><br /><br />
+                        <button className="confirm-button" type='submit'><icon><FaSave /></icon>Salvar</button>
                     </form>
-                    <button className="confirm-button" onClick={handleDelete}>
-                            <icon><FaTrash/></icon>Deletar
+                    <button className="confirm-button" onClick = {()=>handleDelete(id)}>
+                        <icon><FaTrash /></icon>Deletar
                     </button>
                     <div className="actions">
                         <button className="confirm-button" onClick={limpar}>
-                            <icon><FaEraser/></icon>Limpar
+                            <icon><FaEraser /></icon>Limpar
                         </button>
                     </div>
                 </div>
             </div>
         )
     }
-    else{
+    else {
         return (
             <div>
                 <User />
@@ -108,8 +132,8 @@ export default function EditarUsuario() {
                 <div id="main-editUsuario">
                     <h2>Editar Perfil</h2>
                     <form onSubmit={onSubmit}>
-                        {/* <label>Imagem:</label><br/>
-                        <input className="inputfile" type="file" name="imagem"/><br/><br/> */}
+                    <label>Imagem:</label><br/>
+                        <input className="inputfile" type="file" name="imagem" onChange={e => setImage(e.target.files[0])}/><br/><br/>
                         <label>E-mail*</label>
                         <input className="inputtext" type="char" name="email" id="email" onChange={onChange} value={user.email} />
                         <label>Nome*</label>
@@ -117,15 +141,15 @@ export default function EditarUsuario() {
                         <label>Sobrenome*</label>
                         <input className="inputtext" type="char" name="sobrenome" id="sobrenome" onChange={onChange} value={user.sobrenome} />
                         <label>Telefone*</label>
-                        <input className="inputtext" type="char" name="telefone" id="telefone" onChange={onChange} value={user.telefone} /><br/>
-                        <button className="confirm-button" type='submit'><icon><FaSave/></icon>Salvar</button>
+                        <input className="inputtext" type="char" name="telefone" id="telefone" onChange={onChange} value={user.telefone} /><br />
+                        <button className="confirm-button" type='submit'><icon><FaSave /></icon>Salvar</button>
                     </form>
                     <button className="confirm-button" onClick={handleDelete}>
-                            <icon><FaTrash/></icon>Deletar
+                        <icon><FaTrash /></icon>Deletar
                     </button>
                     <div className="actions">
                         <button className="confirm-button" onClick={limpar}>
-                            <icon><FaEraser/></icon>Limpar
+                            <icon><FaEraser /></icon>Limpar
                         </button>
                     </div>
                 </div>

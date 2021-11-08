@@ -42,7 +42,7 @@ module.exports = {
     },
 
     async show(req, res) {
-        const { id, email, senha, nome, sobrenome, telefone, funcao, dataCadastro, imagem, status } = req.body
+        const { id, email, nome, sobrenome, telefone, funcao, dataCadastro, status } = req.body
         const user = await connection('users')
             .where('id', 'like', `%${id || ''}%`)
             .where('email', 'like', `%${email || ''}%`)
@@ -70,7 +70,18 @@ module.exports = {
 
     async update(req, res) {
         const { id } = req.params;
-        const { email, senha, nome, sobrenome, telefone, funcao, dataCadastro, imagem, status } = req.body
+        const { email, senha, nome, sobrenome, telefone, funcao, dataCadastro, status } = req.body
+        console.log(req.body)
+        const imagemPet = {
+            imagem: ''
+        }
+
+        if (req.file) {
+            imagemPet.imagem = req.file.path
+        }
+        const { imagem } = imagemPet;
+        console.log(imagem)
+        
         await connection('users')
             .where('id', id)
             .update({
@@ -89,6 +100,7 @@ module.exports = {
 
     async delete(req, res) {
         const { id } = req.params;
+        console.log(id)
         await connection('users').where('id', id).delete();
         return res.status(204).send();
     },

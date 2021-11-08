@@ -3,26 +3,25 @@ const connection = require('../database/connection')
 
 module.exports = {
     async create(req, res) {
-        const id = crypto.randomBytes(4).toString('hex')
+        const id_reserva = crypto.randomBytes(4).toString('hex')
         
-        const { pet, inicio, fim, status, valor, notas } = req.body
-        const proprietario_id = await connection('pets').where('nome', pet).select('usuario_id')
-        const proprietario = await connection('users').where('id', proprietario_id).select('nome')
-        const pet_id = await connection('pets').where('nome', pet).select('id')
+        const { pet, inicio, fim, status, valor, notas, proprietario } = req.body
+        const id = await connection('pets').where('nome', pet).select('id')
+        const usuario_id = await connection('pets').where('nome', pet).select('usuario_id')
         
         await connection('reserva').insert({
-            id,
+            id: id_reserva,
             pet,
             proprietario,
             inicio,
             fim,
             status,
-            proprietario_id,
-            pet_id,
+            proprietario_id: usuario_id[0].usuario_id,
+            pet_id: id[0].id,
             valor,
             notas
         });
-        res.json({ id });
+        res.json({ id_reserva });
     },
 
     async list(req, res){

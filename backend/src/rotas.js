@@ -10,21 +10,20 @@ routes.get('/users/profile/:id', UserController.list);
 routes.post('/users', multer.single('image'), UserController.create);
 routes.post('/users/pesquisa', UserController.show);
 routes.post('/users/auth', UserController.auth);
-routes.put('/users/:id', UserController.update);
-routes.delete('/users/:id', UserController.delete);
+routes.put('/users/:id',  multer.single('image'), UserController.update);
+routes.delete('/users/profile/delete/:id', UserController.delete);
 
 routes.get('/pets/profile/:id', PetsController.list);
-routes.get('/pets/profile/:userId', PetsController.listUser);
 routes.post('/pets', multer.single('image'), PetsController.create);
 routes.post('/pets/pesquisa', PetsController.show);
-routes.put('/pets/:id', PetsController.update);
-routes.delete('/pets/:id', PetsController.delete);
+routes.put('/pets/:id', multer.single('image'), PetsController.update);
+routes.delete('/pets/profile/delete/:id', PetsController.delete);
 
 routes.get('/reserva/profile/:id', ReservaController.list);
 routes.post('/reserva', ReservaController.create);
 routes.post('/reserva/pesquisa', ReservaController.show);
 routes.put('/reserva/:id', ReservaController.update);
-routes.delete('/reserva/:id', ReservaController.delete);
+routes.delete('/reserva/profile/delete/:id', ReservaController.delete);
 
 routes.get('/configuracao', ConfiguracaoController.list);
 routes.post('/configuracao', ConfiguracaoController.create);

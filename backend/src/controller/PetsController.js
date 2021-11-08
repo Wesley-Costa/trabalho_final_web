@@ -5,6 +5,7 @@ module.exports = {
     async create(req, res) {
         const id = crypto.randomBytes(4).toString('hex')
         const { raca, tamanho, nome, tipo, usuario_id } = req.body
+        console.log(req.body)
         const imagemPet = {
             imagem: ''
         }
@@ -13,6 +14,7 @@ module.exports = {
             imagemPet.imagem = req.file.path
         }
         const { imagem } = imagemPet;
+        console
 
         await connection('pets').insert({
             id,
@@ -36,15 +38,6 @@ module.exports = {
         return res.json(pets);
     },
 
-    async listUser(req, res) {
-        const { usuario_id } = req.params;
-        const pets = await connection('pets')
-            .where('usuario_id', usuario_id)
-            .select('*');
-
-        return res.json(pets);
-    },
-
     async show(req, res) {
         const { id, raca, tamanho, nome, usuario_id } = req.body
         const pet = await connection('pets')
@@ -60,7 +53,18 @@ module.exports = {
 
     async update(req, res) {
         const { id } = req.params;
-        const { raca, tamanho, nome, tipo, imagem, usuario_id } = req.body
+        const { raca, tamanho, nome, tipo, usuario_id } = req.body
+        console.log(req.body)
+        const imagemPet = {
+            imagem: ''
+        }
+
+        if (req.file) {
+            imagemPet.imagem = req.file.path
+        }
+        const { imagem } = imagemPet;
+        console.log(imagem)
+
         await connection('pets')
             .where('id', id)
             .update({

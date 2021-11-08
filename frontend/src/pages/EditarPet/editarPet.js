@@ -7,31 +7,45 @@ import api from '../../services/api'
 import { FaEraser, FaSave, FaTrash } from 'react-icons/fa';
 
 export default function EditarPet() {
-    
+
     const history = useHistory();
-    const {id} = useParams();
+    const { id } = useParams();
+    const [image, setImage] = useState('')
 
     const initPet = {
         raca: '',
         tamanho: '',
         nome: '',
-        tipo: '',
-        imagem: ''
+        tipo: ''
     }
 
-    const [pet, setPet] = useState(initPet);
+    const [pet, setPet] = useState([initPet]);
 
-   useEffect(() => {
-       if (id) {
-           api.get(`/pets/profile/${id}`).then(response => {
-               setPet(...response.data)
-           })
-       }
-   }, []);
-    
+    useEffect(() => {
+        if (id) {
+            api.get(`/pets/profile/${id}`).then(response => {
+                setPet(...response.data)
+            })
+        }
+    }, []);
+
     function onSubmit(ev) {
         ev.preventDefault();
-        api.put(`/pets/${id}`, pet).then((response)=>{
+        const formData = new FormData();
+        formData.append('image', image);
+        formData.append('nome', pet.nome);
+        formData.append('raca', pet.raca);
+        formData.append('tamanho', pet.tamanho);
+        formData.append('tipo', pet.tipo);
+        formData.append('usuario_id', pet.usuario_id);
+
+        const headers = {
+            'headers': {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        api.put(`/pets/${id}`, formData, headers).then((response) => {
             history.push('/Pet')
         })
     }
@@ -41,12 +55,14 @@ export default function EditarPet() {
         setPet({ ...pet, [name]: value })
     }
 
-    async function handleDelete(id){
-        try{
-            await api.delete(`/pets/${id}`).then((response)=>{
-                history.push('/Pet')
-            })
-        }catch(err){
+    async function handleDelete(id) {
+        try {
+            if (id) {
+                await api.delete(`/pets/profile/delete/${id}`).then((response) => {
+                    history.push('/Pet');
+                })
+            }
+        } catch (err) {
             alert('Erro ao deletar!!!');
         }
     }
@@ -54,7 +70,7 @@ export default function EditarPet() {
     function limpar() {
         setPet(initPet)
     }
-    
+
     return (
         <div>
             <User />
@@ -62,8 +78,8 @@ export default function EditarPet() {
             <div id="main-editarPet">
                 <h2>Editar Pet</h2>
                 <form onSubmit={onSubmit}>
-                    {/* <label>Imagem:</label><br/>
-                    <input className="inputfile" type="file" name="imagem" onChange={onChange} value={pet.imagem}/><br/><br/> */}
+                    <label>Imagem:</label><br />
+                    <input className="inputfile" type="file" name="imagem" onChange={e => setImage(e.target.files[0])} /><br /><br />
                     <label>Nome*</label>
                     <input className="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={pet.nome} />
                     <label>Raça*</label>
@@ -73,14 +89,14 @@ export default function EditarPet() {
                     <label>Tamanho*</label>
                     <input className="inputtext" type="char" name="tamanho" id="tamanho" onChange={onChange} value={pet.tamanho} />
                     <button className="confirm-button" type='submit' >
-                        <icon><FaSave/></icon>Salvar</button>
+                        <icon><FaSave /></icon>Salvar</button>
                 </form>
                 <div className="actions">
-                    <button className="confirm-button" onClick={handleDelete}>
-                        <icon><FaTrash/></icon>Deletar
+                    <button className="confirm-button"  onClick = {()=>handleDelete(id)}>
+                        <icon><FaTrash /></icon>Deletar
                     </button>
                     <button className="confirm-button" onClick={limpar}>
-                        <icon><FaEraser/></icon>Limpar
+                        <icon><FaEraser /></icon>Limpar
                     </button>
                 </div>
             </div>

@@ -38,7 +38,7 @@ export default function EditarReserva() {
 
     async function handleDelete(id){
         try{
-            await api.delete(`/reserva/${id}`).then((response)=>{
+            await api.delete(`/reserva/profile/delete/${id}`).then((response)=>{
                 history.push('/Home')
             })
         }catch(err){
@@ -105,7 +105,7 @@ export default function EditarReserva() {
                     <button className="confirm-button" type='submit'><icon><FaSave/></icon>Salvar</button>
                 </form>
                 <div className="actions">
-                    <button className="confirm-button" onClick={handleDelete}>
+                    <button className="confirm-button" onClick = {()=>handleDelete(id)}>
                             <icon><FaTrash/></icon>Deletar
                     </button>
                     <button className="confirm-button" onClick={limpar}>
