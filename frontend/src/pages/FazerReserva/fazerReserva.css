@@ -15,8 +15,9 @@
 }
 
 #main-fazerReserva .inputtext {
-    width: 240px;
+    width: 200px;
     height: 35px;
+    display: inline-block;
     }
 
 #main-fazerReserva .inputDate {
@@ -45,3 +46,9 @@
     border-radius: 10px;
     border: 1px solid rgb(199, 195, 195);
     }
+
+#main-fazerReserva .search-button {
+    width: 30px;
+    border: 0px;
+    background: #d8f2f0;
+}

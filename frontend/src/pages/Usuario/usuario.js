@@ -112,7 +112,6 @@ export default function Usuario() {
                     options={{
                         actionsColumnIndex: -1,
                         toolbar:false,
-                        paginationPosition: false,
                         headerStyle: {
                         backgroundColor: '#194759',
                         color: '#FFFF',

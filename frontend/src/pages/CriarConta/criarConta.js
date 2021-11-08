@@ -51,7 +51,7 @@ export default function CriarConta() {
                             <label>Login(email)</label><br/>
                             <input className='inputtextRegister' id='email' name='email' autoComplete='email' onChange={onChange} value={user.email} required /><br/>   
                             <label>Senha</label><br/>
-                            <input className='inputtextRegister' id='senha' name='senha' type='senha' autoComplete='senha' minLength={8} onChange={onChange} value={user.senha} required /><br/>
+                            <input className='inputtextRegister' id='senha' name='senha' type='password' autoComplete='senha' minLength={8} onChange={onChange} value={user.senha} required /><br/>
                             <label>Nome</label><br/>
                             <input className='inputtextRegister' id='nome' name='nome' type='nome' autoComplete='nome' onChange={onChange} value={user.nome} required /><br/>
                             <label>Sobrenome</label><br/>

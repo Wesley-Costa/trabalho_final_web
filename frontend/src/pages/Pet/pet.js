@@ -27,7 +27,6 @@ export default function Pet() {
         api.post('/pets/pesquisa', pet).then((response) => {
             setData(response.data)
         })
-        console.log(data)
     }
 
     function onChange(ev) {
@@ -86,7 +85,6 @@ export default function Pet() {
                         options={{
                             actionsColumnIndex: -1,
                             toolbar:false,
-                            paginationPosition: false,
                             headerStyle: {
                             backgroundColor: '#194759',
                             color: '#FFFF',
@@ -113,7 +111,7 @@ export default function Pet() {
             </div>
         )
     }
-    else if(localStorage.getItem('funcao') === 'Funcionário'){
+    else{
         return (
             <div>
                 <User />
@@ -157,7 +155,6 @@ export default function Pet() {
                         options={{
                             actionsColumnIndex: -1,
                             toolbar:false,
-                            paginationPosition: false,
                             headerStyle: {
                             backgroundColor: '#194759',
                             color: '#FFFF',
