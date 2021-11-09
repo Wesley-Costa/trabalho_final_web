@@ -12,6 +12,7 @@ export default function Pet() {
     
     const [data, setData] = useState([]);
     const history = useHistory();
+    const UserId = localStorage.getItem('id');
 
     const initPet = {
         id: '',
@@ -20,10 +21,12 @@ export default function Pet() {
         nome: '',
         usuario_id: '',
     }
+
     const [pet, setPet] = useState(initPet);
 
     function onSubmit(ev) {
         ev.preventDefault();
+        
         api.post('/pets/pesquisa', pet).then((response) => {
             setData(response.data)
         })

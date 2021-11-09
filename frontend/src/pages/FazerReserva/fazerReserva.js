@@ -37,7 +37,6 @@ export default function FazerReserva() {
         })
     }
 
-    const UserId = localStorage.getItem('id');
     const pet = {
         id: '',
         raca: '',
@@ -45,7 +44,7 @@ export default function FazerReserva() {
         nome: '',
         usuario_id: '',
     }
-    pet.usuario_id = UserId;
+    
     const [pets, setPets] = useState([]);
     
     useEffect(() => {
@@ -80,7 +79,9 @@ export default function FazerReserva() {
     if(localStorage.getItem('funcao') === 'Cliente'){
 
         const nome = localStorage.getItem('nome');
-        reserva.proprietario = nome; 
+        const UserId = localStorage.getItem('id');
+        reserva.proprietario = nome;
+        pet.usuario_id = UserId; 
 
         return (
             <div>

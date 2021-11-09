@@ -52,7 +52,10 @@ export default function EditarUsuario() {
 
     function onSubmit(ev) {
         ev.preventDefault();
-        console.log(image)
+        if(user.id === id){
+            localStorage.setItem("nome", user.nome);
+            localStorage.setItem("sobrenome", user.sobrenome);
+        }
         const formData = new FormData();
         formData.append('image', image);
         formData.append('email', user.email);
@@ -71,7 +74,7 @@ export default function EditarUsuario() {
         }
 
         api.put(`/users/${id}`, formData, headers).then((response) => {
-            history.push('/Usuario')
+            history.push('/Home')
         })
     }
 

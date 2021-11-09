@@ -115,7 +115,7 @@ export default function CadastrarPet() {
                     <form onSubmit={onSubmit}>
                         <label>Imagem:</label><br />
                         <input className="inputfile" type="file" name="imagem" onChange={e => setImage(e.target.files[0])} /><br /><br />
-                        <label>Proprietário*</label>
+                        <label>Proprietário ID*</label>
                         <input class="inputtext" type="char" name="usuario_id" id="usuario_id" onChange={onChange} value={pet.usuario_id} />
                         <label>Nome*</label>
                         <input class="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={pet.nome} />

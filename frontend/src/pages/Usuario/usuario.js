@@ -6,7 +6,7 @@ import './usuario.css';
 import { FaCheck, FaPen, FaUserMinus, FaSearch, FaUserPlus, FaEraser, FaEye } from 'react-icons/fa';
 import MaterialTable from '@material-table/core';
 import { localizationBR } from '../../components/localization';
-import api from '../../services/api'
+import api from '../../services/api';
 
 export default function Usuario() {
     
@@ -32,12 +32,12 @@ export default function Usuario() {
         api.post('/users/pesquisa', user).then((response) => {
             setData(response.data)
         })
-        console.log(data)
     }
 
     function onChange(ev) {
         const { name, value } = ev.target;
         setUser({ ...user, [name]: value })
+
     }
 
     function limpar() {
@@ -101,7 +101,17 @@ export default function Usuario() {
                 <MaterialTable
                     localization={localizationBR}
                     columns={[
-                        { title: 'Foto', field: 'foto', align: 'center' },
+                        { 
+                            title: 'Foto',
+                            field: 'imagem',
+                            render: rowData => (
+                                <img
+                                    style={{ height: 36, borderRadius: '50%' }}
+                                    src ={`http://localhost:3001/files/${rowData.imagem}`}
+                                    alt = "" 
+                                />
+                            ),
+                        },
                         { title: 'E-mail', field: 'email', align: 'center' },
                         { title: 'Nome', field: 'nome', align: 'center' },                             
                         { title: 'Função', field: 'funcao', align: 'center' },
@@ -121,6 +131,9 @@ export default function Usuario() {
                         showFirstLastPageButtons: true,
                         grouping: false,
                     }}
+                    //options={{
+                    //    selection: true
+                    //}}
                     actions={[
                         {
                         icon: FaPen,

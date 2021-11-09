@@ -4,7 +4,6 @@ import { Context } from '../context/authContext';
 import '../styles/components/user.css';
 import { FaSignOutAlt} from 'react-icons/fa';
 import api from '../services/api';
-import userImg from '../img/user.jpg';
 
 export default function User(){
 
@@ -13,18 +12,7 @@ export default function User(){
     const sobrenome = localStorage.getItem('sobrenome');
     const id = localStorage.getItem('id');
 
-    const initUsuario = {
-        email: '',
-        senha: '',
-        nome: '',
-        sobrenome: '',
-        telefone: '',
-        funcao: '',
-        dataCadastro: '',
-        imagem: '',
-        status: 'Ativo'
-    }
-    const [user, setUser] = useState(initUsuario);
+    const [user, setUser] = useState('');
 
     useEffect(() => {
         if (id) {
