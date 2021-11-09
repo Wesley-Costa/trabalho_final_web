@@ -18,7 +18,8 @@ export default function EditarReserva() {
         fim: '',
         notas: '',
         status: '',
-        valor: ''
+        valor: '',
+        proprietario_id: ''
     }
     const [reserva, setReserva] = useState(initReserva);
     const initConfig = {
@@ -53,6 +54,23 @@ export default function EditarReserva() {
         })
     }
 
+    const UserId = localStorage.getItem('id');
+    const pet = {
+        id: '',
+        raca: '',
+        tamanho: '',
+        nome: '',
+        usuario_id: '',
+    }
+    pet.usuario_id = UserId;
+    const [pets, setPets] = useState([]);
+    
+    useEffect(() => {
+        api.post('/pets/pesquisa', pet).then((response) => {
+            setPets(response.data)
+        })
+    }, []);
+
     function onChange(ev) {
         calcValorDiaria()
         const { name, value } = ev.target;
@@ -76,44 +94,92 @@ export default function EditarReserva() {
         reserva.valor = parseInt(days) * parseFloat(config.valorDiaria)
     }
 
-    return (
-        <div>
-            <User />
-            <Menu />
-            <div id="main-editarReserva">
-                <h2>Editar Reserva</h2>
-                <form onSubmit={onSubmit}>
-                    <label>Proprietário*</label>
-                    <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.proprietario} />
-                    <label>Pet*</label>
-                    <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} />
-                    <label>Período*</label><br/>
-                    <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
-                    <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br/><br/>
-                    <label>Notas*</label>
-                    <input className="inputnote" type="char" name="notas" id="notas" onChange={onChange} value={reserva.notas} />
-                    <label>Status*</label><br/>
-                    <select type="char" name="status" id="status" onChange={onChange} value={reserva.status} >
-                        <option>Selecione</option>
-                        <option>Reservado</option>
-                        <option>Em andamento</option>
-                        <option>Cancelada</option>
-                        <option>Finalizada</option>
-                    </select><br/><br/><br/>
-                    <label>Total das diárias*: R$ {reserva.valor}</label>
-                    <br/><br/><br/>
-                    <button className="confirm-button" type='submit'><icon><FaSave/></icon>Salvar</button>
-                </form>
-                <div className="actions">
-                    <button className="confirm-button" onClick = {()=>handleDelete(id)}>
-                            <icon><FaTrash/></icon>Deletar
-                    </button>
-                    <button className="confirm-button" onClick={limpar}>
-                        <icon><FaEraser/></icon>Limpar
-                    </button>
+    if(localStorage.getItem('funcao') === 'Cliente'){
+
+        const nome = localStorage.getItem('nome');
+        reserva.proprietario = nome; 
+        return (
+            <div>
+                <User />
+                <Menu />
+                <div id="main-editarReserva">
+                    <h2>Editar Reserva</h2>
+                    <form onSubmit={onSubmit}>
+                        <label>Pet*</label><br/>
+                        <select className="inputtext" name="pet" id="pet" onChange={onChange} value={reserva.pet}>
+                            {pets.map(pet => (<option key={pet.id}>{pet.nome}</option>))}
+                        </select><br/><br/>
+                        <label>Período*</label><br/>
+                        <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
+                        <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br/><br/>
+                        <label>Notas*</label>
+                        <input className="inputnote" type="char" name="notas" id="notas" onChange={onChange} value={reserva.notas} />
+                        <label>Status*</label><br/>
+                        <select type="char" name="status" id="status" onChange={onChange} value={reserva.status} >
+                            <option>Selecione</option>
+                            <option>Reservado</option>
+                            <option>Em andamento</option>
+                            <option>Cancelada</option>
+                            <option>Finalizada</option>
+                        </select><br/><br/><br/>
+                        <label>Total das diárias*: R$ {reserva.valor}</label>
+                        <br/><br/><br/>
+                        <button className="confirm-button" type='submit'><icon><FaSave/></icon>Salvar</button>
+                    </form>
+                    <div className="actions">
+                        <button className="confirm-button" onClick = {()=>handleDelete(id)}>
+                                <icon><FaTrash/></icon>Deletar
+                        </button>
+                        <button className="confirm-button" onClick={limpar}>
+                            <icon><FaEraser/></icon>Limpar
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }else{
+        pet.usuario_id = reserva.proprietario_id;
+        return (
+            <div>
+                <User />
+                <Menu />
+                <div id="main-editarReserva">
+                    <h2>Editar Reserva</h2>
+                    <form onSubmit={onSubmit}>
+                        <label>Proprietário*</label><br/>
+                        <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.proprietario} />
+                        <label>Pet*</label><br/>
+                        <select className="inputtext" name="pet" id="pet" onChange={onChange} value={reserva.pet}>
+                            {pets.map(pet => (<option key={pet.id}>{pet.nome}</option>))}
+                        </select><br/><br/>
+                        <label>Período*</label><br/>
+                        <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
+                        <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br/><br/>
+                        <label>Notas*</label>
+                        <input className="inputnote" type="char" name="notas" id="notas" onChange={onChange} value={reserva.notas} />
+                        <label>Status*</label><br/>
+                        <select type="char" name="status" id="status" onChange={onChange} value={reserva.status} >
+                            <option>Selecione</option>
+                            <option>Reservado</option>
+                            <option>Em andamento</option>
+                            <option>Cancelada</option>
+                            <option>Finalizada</option>
+                        </select><br/><br/><br/>
+                        <label>Total das diárias*: R$ {reserva.valor}</label>
+                        <br/><br/><br/>
+                        <button className="confirm-button" type='submit'><icon><FaSave/></icon>Salvar</button>
+                    </form>
+                    <div className="actions">
+                        <button className="confirm-button" onClick = {()=>handleDelete(id)}>
+                                <icon><FaTrash/></icon>Deletar
+                        </button>
+                        <button className="confirm-button" onClick={limpar}>
+                            <icon><FaEraser/></icon>Limpar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
 }

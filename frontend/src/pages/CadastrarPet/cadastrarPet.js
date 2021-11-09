@@ -74,33 +74,66 @@ export default function CadastrarPet() {
         setPet(initPet)
     }
 
-    return (
-        <div>
-            <User />
-            <Menu />
-            <div id="main-cadastrarPet">
-                <h2>Cadastrar Pet</h2>
-                <form onSubmit={onSubmit}>
-                    <label>Imagem:</label><br />
-                    <input className="inputfile" type="file" name="imagem" onChange={e => setImage(e.target.files[0])} /><br /><br />
-                    <label>Proprietário*</label>
-                    <input class="inputtext" type="char" name="usuario_id" id="usuario_id" onChange={onChange} value={pet.usuario_id} />
-                    <label>Nome*</label>
-                    <input class="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={pet.nome} />
-                    <label>Raça*</label>
-                    <input class="inputtext" type="char" name="raca" id="raca" onChange={onChange} value={pet.raca} />
-                    <label>Tipo*</label>
-                    <input class="inputtext" type="char" name="tipo" id="tipo" onChange={onChange} value={pet.tipo} />
-                    <label>Tamanho*</label>
-                    <input class="inputtext" type="char" name="tamanho" id="tamanho" onChange={onChange} value={pet.tamanho} />
-                    <button className="confirm-button" type='submit'><icon><FaSave /></icon>Salvar</button>
-                </form>
-                <div className="actions">
-                    <button className="confirm-button" onClick={limpar}>
-                        <icon><FaEraser /></icon>Limpar
-                    </button>
+    if(localStorage.getItem('funcao') === 'Cliente'){
+
+        const idUser = localStorage.getItem('id');
+        pet.usuario_id = idUser; 
+        return (
+            <div>
+                <User />
+                <Menu />
+                <div id="main-cadastrarPet">
+                    <h2>Cadastrar Pet</h2>
+                    <form onSubmit={onSubmit}>
+                        <label>Imagem:</label><br />
+                        <input className="inputfile" type="file" name="imagem" onChange={e => setImage(e.target.files[0])} /><br /><br />
+                        <label>Nome*</label>
+                        <input class="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={pet.nome} />
+                        <label>Raça*</label>
+                        <input class="inputtext" type="char" name="raca" id="raca" onChange={onChange} value={pet.raca} />
+                        <label>Tipo*</label>
+                        <input class="inputtext" type="char" name="tipo" id="tipo" onChange={onChange} value={pet.tipo} />
+                        <label>Tamanho*</label>
+                        <input class="inputtext" type="char" name="tamanho" id="tamanho" onChange={onChange} value={pet.tamanho} />
+                        <button className="confirm-button" type='submit'><icon><FaSave /></icon>Salvar</button>
+                    </form>
+                    <div className="actions">
+                        <button className="confirm-button" onClick={limpar}>
+                            <icon><FaEraser /></icon>Limpar
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        )
+    }else{
+        return (
+            <div>
+                <User />
+                <Menu />
+                <div id="main-cadastrarPet">
+                    <h2>Cadastrar Pet</h2>
+                    <form onSubmit={onSubmit}>
+                        <label>Imagem:</label><br />
+                        <input className="inputfile" type="file" name="imagem" onChange={e => setImage(e.target.files[0])} /><br /><br />
+                        <label>Proprietário*</label>
+                        <input class="inputtext" type="char" name="usuario_id" id="usuario_id" onChange={onChange} value={pet.usuario_id} />
+                        <label>Nome*</label>
+                        <input class="inputtext" type="char" name="nome" id="nome" onChange={onChange} value={pet.nome} />
+                        <label>Raça*</label>
+                        <input class="inputtext" type="char" name="raca" id="raca" onChange={onChange} value={pet.raca} />
+                        <label>Tipo*</label>
+                        <input class="inputtext" type="char" name="tipo" id="tipo" onChange={onChange} value={pet.tipo} />
+                        <label>Tamanho*</label>
+                        <input class="inputtext" type="char" name="tamanho" id="tamanho" onChange={onChange} value={pet.tamanho} />
+                        <button className="confirm-button" type='submit'><icon><FaSave /></icon>Salvar</button>
+                    </form>
+                    <div className="actions">
+                        <button className="confirm-button" onClick={limpar}>
+                            <icon><FaEraser /></icon>Limpar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }

@@ -110,6 +110,7 @@ export default function FazerReserva() {
         )
     }
     else {
+        pet.usuario_id = '';
         return (
             <div>
                 <User />
@@ -120,7 +121,9 @@ export default function FazerReserva() {
                         <label>Proprietário*</label><br/>
                         <input className="inputtext" type="char" name="proprietario" id="proprietario" onChange={onChange} value={reserva.proprietario} /><br />
                         <label>Pet*</label><br/>
-                        <input className="inputtext" type="char" name="pet" id="pet" onChange={onChange} value={reserva.pet} /><br />
+                        <select className="inputtext" name="pet" id="pet" onChange={onChange} value={reserva.pet}>
+                            {pets.map(pet => (<option key={pet.id}>{pet.nome}</option>))}
+                        </select><br/><br/>
                         <label>Período*</label><br />
                         <input className="inputdate" type="date" name="inicio" id="inicio" onChange={onChange} value={reserva.inicio} />
                         <input className="inputdate" type="date" name="fim" id="fim" onChange={onChange} value={reserva.fim} /><br /><br />
