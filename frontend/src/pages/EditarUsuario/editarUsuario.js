@@ -24,7 +24,7 @@ export default function EditarUsuario() {
         sobrenome: '',
         telefone: '',
         funcao: '',
-        dataCadastro: date.getDate(),
+        dataCadastro: '',
         imagem: '',
         status: 'Ativo'
     }
