@@ -5,16 +5,16 @@ module.exports = {
     async create(req, res) {
         const id = crypto.randomBytes(4).toString('hex')
         const { email, senha, nome, sobrenome, telefone, funcao, dataCadastro, status } = req.body
-        console.log(req.body)
         const imagemPet = {
             imagem: ''
         }
+        // console.log('.', req.body)
 
         if (req.file) {
-            imagemPet.imagem = req.file.path
+            imagemPet.imagem = req.file.filename
+            // console.log(req.file.filename)
         }
         const { imagem } = imagemPet;
-        console.log(imagem)
 
         await connection('users').insert({
             id,
@@ -71,16 +71,16 @@ module.exports = {
     async update(req, res) {
         const { id } = req.params;
         const { email, senha, nome, sobrenome, telefone, funcao, dataCadastro, status } = req.body
-        console.log(req.body)
         const imagemPet = {
             imagem: ''
         }
 
         if (req.file) {
-            imagemPet.imagem = req.file.path
+            imagemPet.imagem = req.file.filename
+            // console.log(req.file.filename)
         }
         const { imagem } = imagemPet;
-        console.log(imagem)
+        // console.log('.', req.file.name)
         
         await connection('users')
             .where('id', id)

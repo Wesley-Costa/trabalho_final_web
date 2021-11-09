@@ -52,6 +52,7 @@ export default function EditarUsuario() {
 
     function onSubmit(ev) {
         ev.preventDefault();
+        console.log(image)
         const formData = new FormData();
         formData.append('image', image);
         formData.append('email', user.email);

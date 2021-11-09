@@ -5,6 +5,7 @@ const PetsController = require('./controller/PetsController');
 const ReservaController = require('./controller/ReservaController');
 const ConfiguracaoController = require('./controller/ConfiguracaoController');
 const multer = require('./config/multer');
+const ControllerImage = require('./controller/ControllerImage')
 
 routes.get('/users/profile/:id', UserController.list);
 routes.post('/users', multer.single('image'), UserController.create);
@@ -12,6 +13,7 @@ routes.post('/users/pesquisa', UserController.show);
 routes.post('/users/auth', UserController.auth);
 routes.put('/users/:id',  multer.single('image'), UserController.update);
 routes.delete('/users/profile/delete/:id', UserController.delete);
+// routes.post('/image', ControllerImage.show);
 
 routes.get('/pets/profile/:id', PetsController.list);
 routes.post('/pets', multer.single('image'), PetsController.create);

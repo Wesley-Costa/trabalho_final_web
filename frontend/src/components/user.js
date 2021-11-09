@@ -34,13 +34,10 @@ export default function User(){
         }
     }, []);
 
-    var imagem = user.imagem;
-    console.log(imagem)
-
     return(
         <user>
             <Link to={`/EditarUsuario/${id}`} className="user-button">
-                <img src ={userImg} alt = "" />
+                <img src ={`http://localhost:3001/files/${user.imagem}`} alt = "" />
                 {nome + ' ' + sobrenome}</Link>
             <button className="user-logout" type="button" onClick={handleLogout}>
                 Sair<icon><FaSignOutAlt/></icon>
