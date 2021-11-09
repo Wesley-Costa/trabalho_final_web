@@ -4,8 +4,7 @@ import { Context } from '../context/authContext';
 import '../styles/components/user.css';
 import { FaSignOutAlt} from 'react-icons/fa';
 import api from '../services/api';
-import Avatar from 'react-avatar';
-import AvatarEditor from 'react-avatar-editor';
+import userImg from '../img/user.jpg';
 
 export default function User(){
 
@@ -41,9 +40,7 @@ export default function User(){
     return(
         <user>
             <Link to={`/EditarUsuario/${id}`} className="user-button">
-                <AvatarEditor width={40} height={40} border={10} borderRadius={20} src ={imagem}>
-                    <img src ={imagem} alt = "" />
-                </AvatarEditor>
+                <img src ={userImg} alt = "" />
                 {nome + ' ' + sobrenome}</Link>
             <button className="user-logout" type="button" onClick={handleLogout}>
                 Sair<icon><FaSignOutAlt/></icon>

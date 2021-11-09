@@ -39,3 +39,11 @@ user icon {
     padding-right: 10px;
     padding-left: 10px;
 }
+
+user img{
+    width: 40px;
+    height: 40px;
+    background: #ffff;
+    margin-right: 10px;
+    border-radius: 50px;
+}
