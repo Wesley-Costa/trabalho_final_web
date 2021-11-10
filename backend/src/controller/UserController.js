@@ -8,11 +8,9 @@ module.exports = {
         const imagemPet = {
             imagem: ''
         }
-        // console.log('.', req.body)
 
         if (req.file) {
             imagemPet.imagem = req.file.filename
-            // console.log(req.file.filename)
         }
         const { imagem } = imagemPet;
 
@@ -77,10 +75,8 @@ module.exports = {
 
         if (req.file) {
             imagemPet.imagem = req.file.filename
-            // console.log(req.file.filename)
         }
         const { imagem } = imagemPet;
-        // console.log('.', req.file.name)
         
         await connection('users')
             .where('id', id)

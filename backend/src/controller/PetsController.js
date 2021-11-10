@@ -11,7 +11,7 @@ module.exports = {
         }
 
         if (req.file) {
-            imagemPet.imagem = req.file.path
+            imagemPet.imagem = req.file.filename
         }
         const { imagem } = imagemPet;
         console
@@ -60,7 +60,7 @@ module.exports = {
         }
 
         if (req.file) {
-            imagemPet.imagem = req.file.path
+            imagemPet.imagem = req.file.filename
         }
         const { imagem } = imagemPet;
         console.log(imagem)
