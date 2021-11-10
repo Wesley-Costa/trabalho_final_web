@@ -5,7 +5,6 @@ const PetsController = require('./controller/PetsController');
 const ReservaController = require('./controller/ReservaController');
 const ConfiguracaoController = require('./controller/ConfiguracaoController');
 const multer = require('./config/multer');
-const ControllerImage = require('./controller/ControllerImage')
 
 routes.get('/users/profile/:id', UserController.list);
 routes.post('/users', multer.single('image'), UserController.create);
