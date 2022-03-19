@@ -14,7 +14,6 @@ module.exports = {
             imagemPet.imagem = req.file.filename
         }
         const { imagem } = imagemPet;
-        console
 
         await connection('pets').insert({
             id,
